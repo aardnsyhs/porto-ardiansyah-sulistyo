@@ -1,38 +1,56 @@
+import { 
+  Code2, 
+  Palette, 
+  Zap, 
+  Cpu, 
+  Server, 
+  Database, 
+  GitBranch, 
+  Box, 
+  Globe,
+  Layout,
+  Layers
+} from 'lucide-react';
+
 const SkillsSection = () => {
   const skillCategories = [
     {
       title: "Frontend",
+      icon: Layout,
       skills: [
-        { name: "HTML5", level: 95 },
-        { name: "CSS3", level: 90 },
-        { name: "JavaScript", level: 85 },
-        { name: "React.js", level: 80 },
-        { name: "Vue.js", level: 75 },
-        { name: "TailwindCSS", level: 90 },
-        { name: "Bootstrap", level: 85 }
+        { name: "HTML5", level: 95, icon: Code2 },
+        { name: "CSS3", level: 90, icon: Palette },
+        { name: "JavaScript", level: 85, icon: Zap },
+        { name: "React.js", level: 80, icon: Cpu },
+        { name: "Vue.js", level: 75, icon: Layers },
+        { name: "TailwindCSS", level: 90, icon: Palette },
+        { name: "Bootstrap", level: 85, icon: Layout }
       ]
     },
     {
       title: "Backend",
+      icon: Server,
       skills: [
-        { name: "PHP", level: 85 },
-        { name: "Laravel", level: 80 },
-        { name: "Node.js", level: 70 }
+        { name: "PHP", level: 85, icon: Code2 },
+        { name: "Laravel", level: 80, icon: Server },
+        { name: "Node.js", level: 70, icon: Cpu }
       ]
     },
     {
       title: "Database",
+      icon: Database,
       skills: [
-        { name: "MySQL", level: 85 },
-        { name: "PostgreSQL", level: 80 }
+        { name: "MySQL", level: 85, icon: Database },
+        { name: "PostgreSQL", level: 80, icon: Database }
       ]
     },
     {
       title: "Tools & Others",
+      icon: GitBranch,
       skills: [
-        { name: "Git", level: 85 },
-        { name: "Docker", level: 70 },
-        { name: "REST APIs", level: 80 }
+        { name: "Git", level: 85, icon: GitBranch },
+        { name: "Docker", level: 70, icon: Box },
+        { name: "REST APIs", level: 80, icon: Globe }
       ]
     }
   ];
@@ -57,15 +75,21 @@ const SkillsSection = () => {
                 key={category.title} 
                 className={`portfolio-card fade-in fade-in-delay-${categoryIndex + 1}`}
               >
-                <h3 className="text-xl font-semibold mb-6 text-center">{category.title}</h3>
+                <div className="flex items-center justify-center mb-6">
+                  <category.icon className="w-6 h-6 text-primary mr-2" />
+                  <h3 className="text-xl font-semibold">{category.title}</h3>
+                </div>
                 <div className="space-y-4">
                   {category.skills.map((skill) => (
                     <div key={skill.name}>
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm font-medium">{skill.name}</span>
-                        <span className="text-xs text-muted-foreground">{skill.level}%</span>
+                        <div className="flex items-center">
+                          <skill.icon className="w-4 h-4 text-muted-foreground mr-2" />
+                          <span className="text-sm font-medium">{skill.name}</span>
+                        </div>
+                        <span className="text-xs text-muted-foreground font-semibold">{skill.level}%</span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-muted rounded-full h-2">
                         <div 
                           className="bg-primary h-2 rounded-full transition-all duration-1000 ease-out"
                           style={{ width: `${skill.level}%` }}
@@ -83,19 +107,29 @@ const SkillsSection = () => {
             <h3 className="text-center text-lg font-semibold mb-8 text-muted-foreground">
               Technologies I work with
             </h3>
-            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-              {/* Tech logos would go here - using text for now */}
-              {[
-                'HTML5', 'CSS3', 'JavaScript', 'React', 'Vue.js', 
-                'PHP', 'Laravel', 'TailwindCSS', 'MySQL', 'PostgreSQL'
-              ].map((tech) => (
-                <div 
-                  key={tech}
-                  className="px-4 py-2 bg-surface rounded-lg text-sm font-medium hover:bg-gray-100 transition-colors duration-300"
-                >
-                  {tech}
-                </div>
-              ))}
+              <div className="flex flex-wrap justify-center items-center gap-6">
+                {[
+                  { name: 'HTML5', icon: Code2 }, 
+                  { name: 'CSS3', icon: Palette }, 
+                  { name: 'JavaScript', icon: Zap }, 
+                  { name: 'React', icon: Cpu }, 
+                  { name: 'Vue.js', icon: Layers }, 
+                  { name: 'PHP', icon: Code2 }, 
+                  { name: 'Laravel', icon: Server }, 
+                  { name: 'TailwindCSS', icon: Palette }, 
+                  { name: 'MySQL', icon: Database }, 
+                  { name: 'PostgreSQL', icon: Database }
+                ].map((tech) => (
+                  <div 
+                    key={tech.name}
+                    className="flex items-center px-4 py-2 bg-muted rounded-lg hover:bg-accent transition-colors duration-300 group"
+                  >
+                    <tech.icon className="w-4 h-4 text-muted-foreground group-hover:text-primary mr-2 transition-colors" />
+                    <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
             </div>
           </div>
         </div>

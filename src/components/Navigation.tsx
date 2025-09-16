@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { X, Menu } from 'lucide-react';
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -39,6 +41,7 @@ const Navigation = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false); // Close mobile menu when navigating
     }
   };
 
@@ -77,14 +80,37 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden p-2">
-            <div className="w-6 h-5 flex flex-col justify-between">
-              <span className="w-full h-0.5 bg-foreground transition-all duration-300"></span>
-              <span className="w-full h-0.5 bg-foreground transition-all duration-300"></span>
-              <span className="w-full h-0.5 bg-foreground transition-all duration-300"></span>
-            </div>
+          <button 
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-sm border-b border-border">
+            <div className="container-portfolio py-4">
+              <div className="flex flex-col space-y-4">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={cn(
+                      'text-left py-2 text-base font-medium transition-colors duration-300',
+                      activeSection === item.id
+                        ? 'text-primary'
+                        : 'text-muted-foreground hover:text-foreground'
+                    )}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

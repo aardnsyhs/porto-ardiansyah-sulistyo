@@ -4,7 +4,7 @@ const ExperienceSection = () => {
       id: 1,
       title: "Web Developer",
       company: "PT Eksam Digital Edukasi",
-      period: "July 2024 - Present",
+      period: "June 2025 - Present",
       type: "Full-time",
       description: [
         "Developing and maintaining web applications for education technology platforms",
@@ -18,7 +18,7 @@ const ExperienceSection = () => {
       id: 2,
       title: "Web Developer Intern",
       company: "PT Javan Cipta Solusi",
-      period: "February 2024 - June 2024",
+      period: "July 2024 - November 2024",
       type: "Internship",
       description: [
         "Completed a comprehensive 5-month internship program",
@@ -32,7 +32,7 @@ const ExperienceSection = () => {
       id: 3,
       title: "Software Engineering Student",
       company: "SMKN 2 Cimahi",
-      period: "2021 - 2024",
+      period: "2022 - 2025",
       type: "Education",
       description: [
         "Majored in Software Engineering (RPL - Rekayasa Perangkat Lunak)",
@@ -79,9 +79,9 @@ const ExperienceSection = () => {
                     <div className="portfolio-card">
                       {/* Header */}
                       <div className="mb-4">
-                        <div className="flex items-center justify-between mb-2">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
                           <span className="portfolio-label text-primary">{exp.type}</span>
-                          <span className="text-sm text-muted-foreground">{exp.period}</span>
+                          <span className="text-sm text-muted-foreground font-medium">{exp.period}</span>
                         </div>
                         <h3 className="text-xl font-semibold mb-1">{exp.title}</h3>
                         <p className="text-muted-foreground font-medium">{exp.company}</p>
