@@ -2,11 +2,11 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-primary-foreground py-8">
+    <footer className="bg-surface border-t border-border py-8">
       <div className="container-portfolio">
         <div className="text-center space-y-4">
           {/* Logo/Name */}
-          <div className="font-bold text-xl tracking-tight">
+          <div className="font-bold text-xl tracking-tight text-foreground">
             Ardiansyah Sulistyo
           </div>
           
@@ -16,7 +16,7 @@ const Footer = () => {
               href="https://github.com/aardnsyhs"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-300"
               aria-label="GitHub Profile"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -27,7 +27,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/ardiansyah-sulistyo-832a792b8/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-300"
               aria-label="LinkedIn Profile"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -36,7 +36,7 @@ const Footer = () => {
             </a>
             <a
               href="mailto:ardiansyahsulistyo@icloud.com"
-              className="text-primary-foreground/70 hover:text-primary-foreground transition-colors duration-300"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-300"
               aria-label="Email Contact"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,8 +46,8 @@ const Footer = () => {
           </div>
 
           {/* Copyright */}
-          <div className="pt-4 border-t border-primary-foreground/20">
-            <p className="text-primary-foreground/70 text-sm">
+          <div className="pt-4 border-t border-border">
+            <p className="text-muted-foreground text-sm">
               © {currentYear} Ardiansyah Sulistyo. All rights reserved.
             </p>
           </div>

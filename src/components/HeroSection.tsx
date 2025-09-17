@@ -1,4 +1,5 @@
 import profilePhoto from '@/assets/profile-photo.jpg';
+import TypingEffect from './TypingEffect';
 
 const HeroSection = () => {
   return (
@@ -21,9 +22,9 @@ const HeroSection = () => {
             <h1 className="portfolio-heading">
               Ardiansyah Sulistyo
             </h1>
-            <p className="portfolio-subheading text-muted-foreground">
-              Web Developer
-            </p>
+            <div className="portfolio-subheading text-muted-foreground">
+              <TypingEffect text="Web Developer" speed={150} />
+            </div>
             <p className="portfolio-body max-w-2xl mx-auto">
               Passionate web developer with expertise in modern web technologies.
               Currently working at PT Eksam Digital Edukasi, crafting digital solutions 

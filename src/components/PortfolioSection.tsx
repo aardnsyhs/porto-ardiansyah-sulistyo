@@ -125,11 +125,11 @@ const PortfolioSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                     <span className="text-gray-500 text-sm">Project Image</span>
                   </div>
-                  <div className="absolute inset-0 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gray-900/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
                       <a
                         href={project.links.live}
-                        className="p-3 bg-white/20 rounded-full text-white hover:bg-white/30 transition-colors duration-300"
+                        className="p-3 bg-foreground/10 rounded-full text-foreground hover:bg-foreground/20 border border-foreground/20 transition-all duration-300"
                         aria-label="View live project"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -138,7 +138,7 @@ const PortfolioSection = () => {
                       </a>
                       <a
                         href={project.links.github}
-                        className="p-3 bg-white/20 rounded-full text-white hover:bg-white/30 transition-colors duration-300"
+                        className="p-3 bg-foreground/10 rounded-full text-foreground hover:bg-foreground/20 border border-foreground/20 transition-all duration-300"
                         aria-label="View source code"
                       >
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
