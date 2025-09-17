@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ProjectModal from './ProjectModal';
 
 const PortfolioSection = () => {
   const projects = [
@@ -78,10 +79,17 @@ const PortfolioSection = () => {
 
   const categories = ["All", "Web Application", "Full Stack", "Frontend", "Backend", "Dashboard"];
   const [activeCategory, setActiveCategory] = useState("All");
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredProjects = activeCategory === "All" 
     ? projects 
     : projects.filter(project => project.category === activeCategory);
+
+  const openProjectModal = (project: typeof projects[0]) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
 
   return (
     <section id="portfolio" className="section-padding">
@@ -125,11 +133,23 @@ const PortfolioSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                     <span className="text-gray-500 text-sm">Project Image</span>
                   </div>
-                  <div className="absolute inset-0 bg-gray-900/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gray-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="flex space-x-4">
+                      <button
+                        onClick={() => openProjectModal(project)}
+                        className="p-3 bg-white/20 rounded-full text-white hover:bg-white/30 border border-white/30 transition-all duration-300 backdrop-blur-sm"
+                        aria-label="View project details"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                      </button>
                       <a
                         href={project.links.live}
-                        className="p-3 bg-foreground/10 rounded-full text-foreground hover:bg-foreground/20 border border-foreground/20 transition-all duration-300"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-white/20 rounded-full text-white hover:bg-white/30 border border-white/30 transition-all duration-300 backdrop-blur-sm"
                         aria-label="View live project"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -138,7 +158,9 @@ const PortfolioSection = () => {
                       </a>
                       <a
                         href={project.links.github}
-                        className="p-3 bg-foreground/10 rounded-full text-foreground hover:bg-foreground/20 border border-foreground/20 transition-all duration-300"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 bg-white/20 rounded-full text-white hover:bg-white/30 border border-white/30 transition-all duration-300 backdrop-blur-sm"
                         aria-label="View source code"
                       >
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -189,6 +211,13 @@ const PortfolioSection = () => {
               View More on GitHub
             </a>
           </div>
+
+          {/* Project Modal */}
+          <ProjectModal 
+            project={selectedProject}
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         </div>
       </div>
     </section>

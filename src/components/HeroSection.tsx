@@ -1,10 +1,14 @@
 import profilePhoto from '@/assets/profile-photo.jpg';
 import TypingEffect from './TypingEffect';
+import ParticleBackground from './ParticleBackground';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center section-padding">
-      <div className="container-portfolio">
+    <section id="home" className="relative min-h-screen flex items-center justify-center section-padding overflow-hidden">
+      {/* Particle Background */}
+      <ParticleBackground className="z-0" particleCount={60} speed={0.3} />
+      
+      <div className="container-portfolio relative z-10">
         <div className="text-center space-y-8">
           {/* Profile Photo */}
           <div className="fade-in">
@@ -23,7 +27,12 @@ const HeroSection = () => {
               Ardiansyah Sulistyo
             </h1>
             <div className="portfolio-subheading text-muted-foreground">
-              <TypingEffect text="Web Developer" speed={150} />
+              <TypingEffect 
+                texts={["Web Developer", "Frontend Developer", "Backend Developer", "Full Stack Developer"]} 
+                speed={120} 
+                deleteSpeed={60}
+                delayBetween={2500}
+              />
             </div>
             <p className="portfolio-body max-w-2xl mx-auto">
               Passionate web developer with expertise in modern web technologies.

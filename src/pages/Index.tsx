@@ -6,6 +6,7 @@ import ExperienceSection from '@/components/ExperienceSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import CommandPalette from '@/components/CommandPalette';
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer />
+      <CommandPalette />
     </div>
   );
 };
