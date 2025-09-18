@@ -1,55 +1,65 @@
 import { useState } from "react";
 import ProjectModal from "./ProjectModal";
 import eCommercePhoto from "@/assets/e-commerce-photo.png";
+import summizeItPhoto from "@/assets/summizeit-photo.png";
+import nexabookPhoto from "@/assets/nexabook-photo.png";
+import { Eye, ExternalLink } from "lucide-react";
 
 const PortfolioSection = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Learning Platform",
+      title: "SummizeIt",
       description:
-        "A comprehensive learning management system built for educational institutions with course management, student tracking, and interactive features.",
-      technologies: ["Laravel", "React.js", "MySQL", "TailwindCSS"],
-      category: "Web Application",
-      image: "/api/placeholder/400/300",
+        "AI-powered PDF summarization SaaS that helps users quickly extract key insights from uploaded documents.",
+      technologies: ["Next.js", "Prisma", "Stripe", "UploadThing", "AI"],
+      category: "SaaS / AI",
+      image: summizeItPhoto,
       links: {
-        live: "#",
-        github: "#",
+        live: "https://summizeit.vercel.app/",
+        github: "https://github.com/aardnsyhs/summizeit",
       },
     },
     {
       id: 2,
-      title: "Restaurant Management System",
+      title: "Shopenix",
       description:
-        "Full-stack restaurant management application with order processing, inventory management, and customer relationship features.",
-      technologies: ["PHP", "Vue.js", "MySQL", "Bootstrap"],
-      category: "Full Stack",
-      image: "/api/placeholder/400/300",
+        "Administrative dashboard for e-commerce platform with analytics, inventory management, and sales reporting.",
+      technologies: ["Next.js", "TailwindCSS", "Sanity", "Clerk", "Stripe"],
+      category: "E-Commerce & POS",
+      image: eCommercePhoto,
       links: {
-        live: "#",
-        github: "#",
+        live: "https://shopenix.vercel.app/",
+        github: "https://github.com/aardnsyhs/e-commerce",
       },
     },
     {
       id: 3,
-      title: "Portfolio Website",
+      title: "NexaBook",
       description:
-        "Responsive portfolio website showcasing modern design principles and optimized user experience across all devices.",
-      technologies: ["React.js", "TailwindCSS", "JavaScript"],
-      category: "Frontend",
-      image: "/api/placeholder/400/300",
+        "Full-stack hotel booking app with authentication, reservation management, Midtrans payments, and server-side validation.",
+      technologies: [
+        "Next.js",
+        "TailwindCSS",
+        "Prisma",
+        "NextAuth",
+        "Midtrans",
+        "Zod",
+      ],
+      category: "Full Stack Web",
+      image: nexabookPhoto,
       links: {
-        live: "#",
-        github: "#",
+        live: "https://nexabook.vercel.app/",
+        github: "https://github.com/aardnsyhs/booking-hotel",
       },
     },
     {
       id: 4,
-      title: "Task Management App",
+      title: "Portfolio Website",
       description:
-        "Collaborative task management application with real-time updates, team collaboration, and progress tracking features.",
-      technologies: ["Laravel", "React.js", "PostgreSQL", "WebSocket"],
-      category: "Web Application",
+        "Responsive portfolio website showcasing modern design principles and optimized user experience across all devices.",
+      technologies: ["React.js", "TailwindCSS", "JavaScript"],
+      category: "Frontend & UI",
       image: "/api/placeholder/400/300",
       links: {
         live: "#",
@@ -58,11 +68,11 @@ const PortfolioSection = () => {
     },
     {
       id: 5,
-      title: "API Service Platform",
+      title: "Restaurant Management System",
       description:
-        "RESTful API service with comprehensive documentation, authentication, and rate limiting for third-party integrations.",
-      technologies: ["PHP", "Laravel", "MySQL", "Swagger"],
-      category: "Backend",
+        "Full-stack restaurant management application with order processing, inventory management, and customer relationship features.",
+      technologies: ["PHP", "Vue.js", "MySQL", "Bootstrap"],
+      category: "Admin & Dashboard",
       image: "/api/placeholder/400/300",
       links: {
         live: "#",
@@ -71,27 +81,28 @@ const PortfolioSection = () => {
     },
     {
       id: 6,
-      title: "Shopenix",
+      title: "E-Learning Platform",
       description:
-        "Administrative dashboard for e-commerce platform with analytics, inventory management, and sales reporting.",
-      technologies: ["Next.js", "TailwindCSS", "Sanity", "Clerk", "Stripe"],
-      category: "e-commerce",
-      image: eCommercePhoto,
+        "A comprehensive learning management system built for educational institutions with course management, student tracking, and interactive features.",
+      technologies: ["Laravel", "React.js", "MySQL", "TailwindCSS"],
+      category: "Full Stack Web",
+      image: "/api/placeholder/400/300",
       links: {
-        live: "https://shopenix.vercel.app/",
-        github: "https://github.com/aardnsyhs/e-commerce",
+        live: "#",
+        github: "#",
       },
     },
   ];
 
   const categories = [
     "All",
-    "Web Application",
-    "Full Stack",
-    "Frontend",
-    "Backend",
-    "E-Commerce",
+    "SaaS / AI",
+    "E-Commerce & POS",
+    "Admin & Dashboard",
+    "Full Stack Web",
+    "Frontend & UI",
   ];
+
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState<
     (typeof projects)[0] | null
@@ -118,7 +129,7 @@ const PortfolioSection = () => {
           {/* Section Header */}
           <div className="text-center mb-16 fade-in">
             <h2 className="portfolio-subheading mb-4">Portfolio</h2>
-            <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
+            <div className="w-20 h-1 bg-primary mx-auto mb-6" />
             <p className="portfolio-body max-w-2xl mx-auto">
               A collection of projects that showcase my skills and experience in
               web development
@@ -143,13 +154,13 @@ const PortfolioSection = () => {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
             {filteredProjects.map((project, index) => (
               <div
                 key={project.id}
                 className={`portfolio-card group fade-in fade-in-delay-${
                   (index % 3) + 1
-                }`}
+                } h-full min-h-[430px] md:min-h-[450px] flex flex-col`}
               >
                 {/* Project Image */}
                 <div className="relative overflow-hidden rounded-lg mb-4 bg-gray-100 h-48">
@@ -174,25 +185,7 @@ const PortfolioSection = () => {
                         className="p-3 bg-white/20 rounded-full text-white hover:bg-white/30 border border-white/30 transition-all duration-300 backdrop-blur-sm mix-blend-difference"
                         aria-label="View project details"
                       >
-                        <svg
-                          className="w-5 h-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                          />
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                          />
-                        </svg>
+                        <Eye className="w-5 h-5" />
                       </button>
                       <a
                         href={project.links.live}
@@ -201,19 +194,7 @@ const PortfolioSection = () => {
                         className="p-3 bg-white/20 rounded-full text-white hover:bg-white/30 border border-white/30 transition-all duration-300 backdrop-blur-sm mix-blend-difference"
                         aria-label="View live project"
                       >
-                        <svg
-                          className="w-5 h-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                          />
-                        </svg>
+                        <ExternalLink className="w-5 h-5" />
                       </a>
                       <a
                         href={project.links.github}
@@ -234,21 +215,21 @@ const PortfolioSection = () => {
                   </div>
                 </div>
 
-                {/* Project Info */}
-                <div className="space-y-3">
+                <div className="space-y-3 flex-1 grid grid-rows-[auto_1fr_auto]">
                   <div className="flex items-center justify-between">
                     <span className="portfolio-label text-primary">
                       {project.category}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
+                  <div>
+                    <h3 className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="portfolio-body">{project.description}</p>
+                  </div>
 
-                  <p className="portfolio-body">{project.description}</p>
-
-                  <div className="flex flex-wrap gap-2 pt-2">
+                  <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}

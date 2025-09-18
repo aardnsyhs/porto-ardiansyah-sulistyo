@@ -10,6 +10,7 @@ import {
   Globe,
   Layout,
   Layers,
+  Router,
 } from "lucide-react";
 import SkillsVisualization from "./SkillsVisualization";
 
@@ -23,6 +24,7 @@ const SkillsSection = () => {
         { name: "CSS3", level: 90, icon: Palette },
         { name: "JavaScript", level: 85, icon: Zap },
         { name: "React.js", level: 80, icon: Cpu },
+        { name: "Next.js", level: 85, icon: Router },
         { name: "Vue.js", level: 75, icon: Layers },
         { name: "TailwindCSS", level: 90, icon: Palette },
         { name: "Bootstrap", level: 85, icon: Layout },
@@ -34,7 +36,6 @@ const SkillsSection = () => {
       skills: [
         { name: "PHP", level: 85, icon: Code2 },
         { name: "Laravel", level: 80, icon: Server },
-        { name: "Node.js", level: 70, icon: Cpu },
       ],
     },
     {
@@ -50,7 +51,7 @@ const SkillsSection = () => {
       icon: GitBranch,
       skills: [
         { name: "Git", level: 85, icon: GitBranch },
-        { name: "Docker", level: 70, icon: Box },
+        { name: "Docker", level: 45, icon: Box },
         { name: "REST APIs", level: 80, icon: Globe },
       ],
     },
@@ -142,7 +143,8 @@ const SkillsSection = () => {
                 { name: "HTML5", icon: Code2 },
                 { name: "CSS3", icon: Palette },
                 { name: "JavaScript", icon: Zap },
-                { name: "React", icon: Cpu },
+                { name: "React.js", icon: Cpu },
+                { name: "Next.js", icon: Router },
                 { name: "Vue.js", icon: Layers },
                 { name: "PHP", icon: Code2 },
                 { name: "Laravel", icon: Server },
