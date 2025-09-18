@@ -1,4 +1,4 @@
-import profilePhoto from "@/assets/profile-photo.jpg";
+import profilePhoto from "@/assets/profile-photo.jpeg";
 import TypingEffect from "./TypingEffect";
 import ParticleBackground from "./ParticleBackground";
 
