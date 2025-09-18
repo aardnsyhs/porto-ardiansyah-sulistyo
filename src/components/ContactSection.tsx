@@ -90,9 +90,17 @@ const ContactSection = () => {
           {/* Call to Action */}
           <div className="text-center fade-in fade-in-delay-3">
             <div className="space-y-6">
-              <h3 className="text-2xl font-semibold flex items-center justify-center gap-2">
-                <span>Let's build something great together</span>
-                <Rocket className="w-6 h-6" />
+              <h3 className="text-2xl font-semibold text-center leading-tight">
+                <span className="md:hidden">
+                  Let&apos;s build something great{" "}
+                  <span className="inline-flex items-center gap-2 whitespace-nowrap align-middle">
+                    together <Rocket className="w-5 h-5" />
+                  </span>
+                </span>
+                <span className="hidden md:inline-flex items-center gap-3 align-middle">
+                  <span>Let&apos;s build something great together</span>
+                  <Rocket className="w-6 h-6" />
+                </span>
               </h3>
               <p className="portfolio-body max-w-xl mx-auto text-center leading-relaxed">
                 Got an exciting project or just want to chat about tech? I'm
