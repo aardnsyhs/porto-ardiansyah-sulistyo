@@ -61,7 +61,7 @@ const HeroSection = () => {
                   .getElementById("portfolio")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="portfolio-button-primary"
+              className="portfolio-button-primary hover:text-white transition-colors duration-300"
             >
               View My Work
             </button>

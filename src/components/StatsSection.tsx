@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { Code, Calendar, Users, Award } from 'lucide-react';
+import { useState, useEffect, useRef } from "react";
+import { Code, Calendar, Users, Award } from "lucide-react";
 
 interface StatItemProps {
   icon: React.ReactNode;
@@ -9,7 +9,13 @@ interface StatItemProps {
   duration?: number;
 }
 
-const StatItem = ({ icon, value, label, suffix = '', duration = 2000 }: StatItemProps) => {
+const StatItem = ({
+  icon,
+  value,
+  label,
+  suffix = "",
+  duration = 2000,
+}: StatItemProps) => {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -41,7 +47,7 @@ const StatItem = ({ icon, value, label, suffix = '', duration = 2000 }: StatItem
       const now = Date.now();
       const progress = Math.min((now - startTime) / duration, 1);
       const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-      
+
       setCount(Math.floor(easeOutCubic * value));
 
       if (now >= endTime) {
@@ -62,11 +68,10 @@ const StatItem = ({ icon, value, label, suffix = '', duration = 2000 }: StatItem
         {icon}
       </div>
       <div className="text-3xl md:text-4xl font-bold mb-2 text-foreground">
-        {count}{suffix}
+        {count}
+        {suffix}
       </div>
-      <div className="text-muted-foreground font-medium">
-        {label}
-      </div>
+      <div className="text-muted-foreground font-medium">{label}</div>
     </div>
   );
 };
@@ -77,34 +82,32 @@ const StatsSection = () => {
       icon: <Code className="w-8 h-8" />,
       value: 15,
       label: "Projects Completed",
-      suffix: "+"
+      suffix: "+",
     },
     {
       icon: <Calendar className="w-8 h-8" />,
-      value: 3,
+      value: 1,
       label: "Years Experience",
-      suffix: "+"
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      value: 10,
-      label: "Happy Clients",
-      suffix: "+"
+      suffix: "+",
     },
     {
       icon: <Award className="w-8 h-8" />,
       value: 8,
       label: "Technologies Mastered",
-      suffix: "+"
-    }
+      suffix: "+",
+    },
   ];
 
   return (
     <section className="section-padding bg-background border-y border-border">
       <div className="container-portfolio">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-3 md:grid-cols-3 gap-8 md:gap-12">
           {stats.map((stat, index) => (
-            <div key={stat.label} className="fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+            <div
+              key={stat.label}
+              className="fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
               <StatItem {...stat} />
             </div>
           ))}
