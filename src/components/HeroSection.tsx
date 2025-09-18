@@ -26,7 +26,13 @@ const HeroSection = () => {
 
           {/* Name and Title */}
           <div className="space-y-4 fade-in fade-in-delay-1">
-            <h1 className="portfolio-heading">Ardiansyah Sulistyo</h1>
+            <h1 className="portfolio-heading relative group">
+              <span className="relative">
+                Ardiansyah Sulistyo
+                <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-700 group-hover:w-full"></span>
+                <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-primary/20 to-accent/20 blur-sm opacity-0 group-hover:opacity-100 transition-all duration-700"></span>
+              </span>
+            </h1>
             <div className="portfolio-subheading text-muted-foreground">
               <TypingEffect
                 texts={[

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { X, Menu } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
+import EasterEgg from './EasterEgg';
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -58,34 +60,44 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="font-bold text-xl tracking-tight">
-            <span className="text-primary">A</span>rdiansyah
+            <EasterEgg>
+              <button onClick={() => scrollToSection('home')} className="hover:text-primary transition-colors duration-300">
+                <span className="text-primary">A</span>rdiansyah
+              </button>
+            </EasterEgg>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={cn(
-                  'portfolio-link text-sm font-medium transition-colors duration-300',
-                  activeSection === item.id
-                    ? 'text-primary'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-              >
-                {item.label}
-              </button>
-            ))}
+          <div className="hidden md:flex items-center space-x-6">
+            <div className="flex items-center space-x-8">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={cn(
+                    'portfolio-link text-sm font-medium transition-colors duration-300',
+                    activeSection === item.id
+                      ? 'text-primary'
+                      : 'text-muted-foreground hover:text-foreground'
+                  )}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center space-x-3 md:hidden">
+            <ThemeToggle />
+            <button 
+              className="p-2 text-foreground hover:text-primary transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

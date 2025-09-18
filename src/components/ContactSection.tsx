@@ -72,25 +72,26 @@ const ContactSection = () => {
           {/* Call to Action */}
           <div className="text-center fade-in fade-in-delay-3">
             <div className="space-y-6">
-              <h3 className="text-2xl font-semibold">Let's Work Together</h3>
+              <h3 className="text-2xl font-semibold">Let's build something great together 🚀</h3>
               <p className="portfolio-body max-w-xl mx-auto">
-                Whether you have a project in mind, need technical consultation, 
-                or just want to say hello, I'd love to hear from you.
+                Got an exciting project or just want to chat about tech? I'm always up for a good conversation and new challenges. Coffee's on me if you're local! ☕
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
                   href="mailto:ardiansyahsulistyo@icloud.com"
-                  className="portfolio-button-primary"
+                  className="portfolio-button-primary group"
                 >
-                  Send Me an Email
+                  <span>Let's Start the Conversation</span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">💬</span>
                 </a>
                 <a 
                   href="https://www.linkedin.com/in/ardiansyah-sulistyo-832a792b8/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="portfolio-button-secondary"
+                  className="portfolio-button-secondary group"
                 >
-                  Connect on LinkedIn
+                  <span>Connect & Network</span>
+                  <span className="ml-2 group-hover:scale-110 transition-transform duration-300">🤝</span>
                 </a>
               </div>
             </div>
