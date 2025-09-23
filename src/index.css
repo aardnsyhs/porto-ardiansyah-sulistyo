@@ -261,11 +261,49 @@
   animation: float 3s ease-in-out infinite;
 }
 
+/* Accessibility - Focus Indicators */
+.portfolio-focus-visible {
+  @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:rounded-md;
+}
+
+.portfolio-button-focus {
+  @apply portfolio-focus-visible transition-all duration-200;
+}
+
+.portfolio-link-focus {
+  @apply portfolio-focus-visible transition-all duration-200;
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: 0 0% 30%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 80%;
+  }
+  
+  .light {
+    --border: 0 0% 70%;
+    --muted: 0 0% 85%;
+    --muted-foreground: 0 0% 20%;
+  }
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .fade-in,
+  .fade-in-delay-1,
+  .fade-in-delay-2,
+  .fade-in-delay-3 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

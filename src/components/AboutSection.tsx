@@ -1,11 +1,11 @@
 const AboutSection = () => {
   return (
-    <section id="about" className="section-padding bg-surface">
+    <section id="about" className="section-padding bg-surface" aria-labelledby="about-heading">
       <div className="container-portfolio">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16 fade-in">
-            <h2 className="portfolio-subheading mb-4">About Me</h2>
+            <h2 id="about-heading" className="portfolio-subheading mb-4">About Me</h2>
             <div className="w-20 h-1 bg-primary mx-auto"></div>
           </div>
 
