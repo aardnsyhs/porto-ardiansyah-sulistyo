@@ -91,9 +91,9 @@ This portfolio is built with performance and accessibility in mind:
 
 Feel free to reach out if you want to collaborate or just say hi:
 
-- **Email**: your.email@example.com
-- **GitHub**: [github.com/yourusername](https://github.com/yourusername)
-- **LinkedIn**: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- **Email**: ardiansyahsulistyo@icloud.com
+- **GitHub**: [github.com/aardnsyhs](https://github.com/aardnsyhs)
+- **LinkedIn**: [linkedin.com/in/ardiansyah-sulistyo](https://linkedin.com/in/ardiansyah-sulistyo)
 
 ## License
 

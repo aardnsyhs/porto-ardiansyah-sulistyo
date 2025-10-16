@@ -40,7 +40,7 @@ const ContactSection = () => {
       ),
       label: "LinkedIn",
       value: "Ardiansyah Sulistyo",
-      link: "https://www.linkedin.com/in/ardiansyah-sulistyo-832a792b8/",
+      link: "https://linkedin.com/in/ardiansyah-sulistyo",
     },
   ];
 
