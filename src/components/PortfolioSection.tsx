@@ -4,6 +4,7 @@ import eCommercePhoto from "@/assets/e-commerce-photo.png";
 import summizeItPhoto from "@/assets/summizeit-photo.png";
 import nexabookPhoto from "@/assets/nexabook-photo.png";
 import { Eye, ExternalLink } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 
 const PortfolioSection = () => {
   const projects = [
@@ -167,26 +168,18 @@ const PortfolioSection = () => {
                 } h-full min-h-[430px] md:min-h-[450px] flex flex-col`}
               >
                 {/* Project Image */}
-                <div className="relative overflow-hidden rounded-lg mb-4 bg-gray-100 h-48">
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={`Screenshot of ${project.title} project showing ${project.description.split('.')[0]}`}
-                      className="object-cover w-full h-full"
-                      loading="lazy"
-                      decoding="async"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      width="400"
-                      height="300"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                      <span className="text-gray-500 text-sm">
-                        Project Image
-                      </span>
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gray-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="relative overflow-hidden rounded-lg mb-4 h-48">
+                  <OptimizedImage
+                    src={project.image}
+                    alt={`Screenshot of ${project.title} project showing ${project.description.split('.')[0]}`}
+                    className="object-cover w-full h-full"
+                    containerClassName="w-full h-full"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    width="400"
+                    height="300"
+                  />
+                  <div className="absolute inset-0 bg-gray-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                     <div className="flex space-x-4">
                       <button
                         onClick={() => openProjectModal(project)}

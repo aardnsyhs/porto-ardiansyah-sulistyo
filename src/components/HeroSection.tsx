@@ -1,6 +1,7 @@
 import profilePhoto from "@/assets/profile-photo.jpeg";
 import TypingEffect from "./TypingEffect";
 import ParticleBackground from "./ParticleBackground";
+import OptimizedImage from "./OptimizedImage";
 
 const HeroSection = () => {
   return (
@@ -18,14 +19,13 @@ const HeroSection = () => {
           {/* Profile Photo */}
           <div className="fade-in">
             <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden border-4 border-border shadow-lg">
-              <img
+              <OptimizedImage
                 src={profilePhoto}
                 alt="Professional headshot of Ardiansyah Sulistyo, Full Stack Web Developer"
                 className="w-full h-full object-cover"
-                loading="eager"
+                priority
                 width="160"
                 height="160"
-                decoding="async"
               />
             </div>
           </div>
