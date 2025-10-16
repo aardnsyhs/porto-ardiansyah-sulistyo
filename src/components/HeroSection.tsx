@@ -4,9 +4,11 @@ import ParticleBackground from "./ParticleBackground";
 
 const HeroSection = () => {
   return (
-    <section
+    <main
       id="home"
+      role="banner"
       className="relative min-h-screen flex items-center justify-center section-padding overflow-hidden"
+      aria-label="Hero section - Ardiansyah Sulistyo Portfolio"
     >
       {/* Particle Background */}
       <ParticleBackground className="z-0" particleCount={60} speed={0.3} />
@@ -18,8 +20,12 @@ const HeroSection = () => {
             <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden border-4 border-border shadow-lg">
               <img
                 src={profilePhoto}
-                alt="Ardiansyah Sulistyo - Web Developer"
+                alt="Professional headshot of Ardiansyah Sulistyo, Full Stack Web Developer"
                 className="w-full h-full object-cover"
+                loading="eager"
+                width="160"
+                height="160"
+                decoding="async"
               />
             </div>
           </div>
@@ -61,7 +67,8 @@ const HeroSection = () => {
                   .getElementById("portfolio")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="portfolio-button-primary hover:text-white transition-colors duration-300"
+              className="portfolio-button-primary hover:text-white transition-colors duration-300 portfolio-button-focus"
+              aria-label="Navigate to portfolio section to view my projects"
             >
               View My Work
             </button>
@@ -71,14 +78,15 @@ const HeroSection = () => {
                   .getElementById("contact")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="portfolio-button-secondary"
+              className="portfolio-button-secondary portfolio-button-focus"
+              aria-label="Navigate to contact section to get in touch"
             >
               Get In Touch
             </button>
           </div>
         </div>
       </div>
-    </section>
+    </main>
   );
 };
 

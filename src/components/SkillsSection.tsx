@@ -58,12 +58,12 @@ const SkillsSection = () => {
   ];
 
   return (
-    <section id="skills" className="section-padding">
+    <section id="skills" className="section-padding" aria-labelledby="skills-heading">
       <div className="container-portfolio">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16 fade-in">
-            <h2 className="portfolio-subheading mb-4">Skills & Technologies</h2>
+            <h2 id="skills-heading" className="portfolio-subheading mb-4">Skills & Technologies</h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
             <p className="portfolio-body max-w-2xl mx-auto">
               Here are the technologies and tools I work with to bring ideas to
