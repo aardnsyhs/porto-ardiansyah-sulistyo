@@ -1,4 +1,3 @@
-import { ThemeProvider } from "@/contexts/ThemeContext";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -10,26 +9,26 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
 import Analytics from "@/components/Analytics";
+import BrandingSection from "@/components/BrandingSection";
 
 const Index = () => {
   return (
-    <ThemeProvider>
-      <div className="min-h-screen">
-        <Analytics />
-        <CommandPalette />
-        <Navigation />
-        <main>
-          <HeroSection />
-          <AboutSection />
-          <SkillsSection />
-          <StatsSection />
-          <ExperienceSection />
-          <PortfolioSection />
-          <ContactSection />
-        </main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <div className="min-h-screen">
+      <Analytics />
+      <CommandPalette />
+      <Navigation />
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <BrandingSection />
+        <SkillsSection />
+        <StatsSection />
+        <ExperienceSection />
+        <PortfolioSection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </div>
   );
 };
 

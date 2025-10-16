@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import ProjectModal from "./ProjectModal";
 import eCommercePhoto from "@/assets/e-commerce-photo.png";
 import summizeItPhoto from "@/assets/summizeit-photo.png";
 import nexabookPhoto from "@/assets/nexabook-photo.png";
-import { Eye, ExternalLink } from "lucide-react";
+import { Eye, ExternalLink, ArrowRight } from "lucide-react";
 import OptimizedImage from "./OptimizedImage";
 
 const PortfolioSection = () => {
   const projects = [
     {
       id: 1,
+      slug: "summizeit",
       title: "SummizeIt",
       description:
         "AI-powered PDF summarization SaaS that helps users quickly extract key insights from uploaded documents.",
@@ -23,6 +25,7 @@ const PortfolioSection = () => {
     },
     {
       id: 2,
+      slug: "shopenix",
       title: "Shopenix",
       description:
         "Administrative dashboard for e-commerce platform with analytics, inventory management, and sales reporting.",
@@ -36,6 +39,7 @@ const PortfolioSection = () => {
     },
     {
       id: 3,
+      slug: "nexabook",
       title: "NexaBook",
       description:
         "Full-stack hotel booking app with authentication, reservation management, Midtrans payments, and server-side validation.",
@@ -181,6 +185,15 @@ const PortfolioSection = () => {
                   />
                   <div className="absolute inset-0 bg-gray-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                     <div className="flex space-x-4">
+                      {project.slug && (
+                        <Link
+                          to={`/project/${project.slug}`}
+                          className="p-3 bg-white/20 rounded-full text-white hover:bg-white/30 border border-white/30 transition-all duration-300 backdrop-blur-sm mix-blend-difference portfolio-button-focus"
+                          aria-label={`View case study for ${project.title} project`}
+                        >
+                          <ArrowRight className="w-5 h-5" aria-hidden="true" />
+                        </Link>
+                      )}
                       <button
                         onClick={() => openProjectModal(project)}
                         className="p-3 bg-white/20 rounded-full text-white hover:bg-white/30 border border-white/30 transition-all duration-300 backdrop-blur-sm mix-blend-difference portfolio-button-focus"
@@ -225,9 +238,17 @@ const PortfolioSection = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">
-                      {project.title}
-                    </h3>
+                    {project.slug ? (
+                      <Link to={`/project/${project.slug}`}>
+                        <h3 className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                      </Link>
+                    ) : (
+                      <h3 className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">
+                        {project.title}
+                      </h3>
+                    )}
                     <p className="portfolio-body" aria-describedby={`project-${project.id}-tech`}>{project.description}</p>
                   </div>
 

@@ -66,7 +66,7 @@
     --foreground: 0 0% 4%;
     
     --surface: 0 0% 98%;
-    --surface-dark: 0 0% 2%;
+    --surface-dark: 0 0% 96%;
     
     --primary: 0 0% 0%;
     --primary-foreground: 0 0% 100%;
@@ -86,6 +86,30 @@
     --border: 0 0% 87%;
     --input: 0 0% 94%;
     --ring: 0 0% 0%;
+    
+    /* Light mode gray overrides */
+    --gray-50: 0 0% 98%;
+    --gray-100: 0 0% 96%;
+    --gray-200: 0 0% 91%;
+    --gray-300: 0 0% 84%;
+    --gray-400: 0 0% 65%;
+    --gray-500: 0 0% 47%;
+    --gray-600: 0 0% 35%;
+    --gray-700: 0 0% 27%;
+    --gray-800: 0 0% 17%;
+    --gray-900: 0 0% 11%;
+  }
+  
+  /* Smooth theme transition */
+  * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
+  
+  *:focus,
+  *:active {
+    transition-duration: 0s;
   }
 }
 
@@ -201,6 +225,31 @@
   
   .text-gradient {
     @apply bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent;
+  }
+  
+  /* Enhanced micro-interactions */
+  .hover-lift {
+    @apply transition-transform duration-300 ease-out hover:-translate-y-1;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 ease-out hover:scale-105;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  
+  .smooth-shadow {
+    transition: box-shadow 0.3s ease-out;
+  }
+  
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
   }
 }
 

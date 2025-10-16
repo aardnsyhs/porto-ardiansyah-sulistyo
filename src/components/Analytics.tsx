@@ -97,6 +97,19 @@ export const trackClick = (element: string, location?: string) => {
   });
 };
 
+export const trackProjectView = (projectId: string, projectTitle: string) => {
+  trackEvent('project_view', {
+    project_id: projectId,
+    project_title: projectTitle,
+  });
+};
+
+export const trackThemeToggle = (theme: string) => {
+  trackEvent('theme_toggle', {
+    new_theme: theme,
+  });
+};
+
 export const trackDownload = (fileName: string) => {
   trackEvent('download', {
     file_name: fileName,
