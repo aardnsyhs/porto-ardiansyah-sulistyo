@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 // Extend Window interface for Google Analytics
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -22,8 +22,8 @@ const Analytics = () => {
 
     // Initialize gtag
     window.dataLayer = window.dataLayer || [];
-    function gtag(...args: any[]) {
-      window.dataLayer.push(args);
+    function gtag(...args: unknown[]) {
+      window.dataLayer!.push(args);
     }
     
     // Set gtag on window
@@ -84,9 +84,9 @@ const Analytics = () => {
 export default Analytics;
 
 // Analytics utility functions for manual tracking
-export const trackEvent = (eventName: string, parameters?: Record<string, any>) => {
+export const trackEvent = (eventName: string, parameters?: Record<string, unknown>) => {
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', eventName, parameters);
+    window.gtag!('event', eventName, parameters);
   }
 };
 

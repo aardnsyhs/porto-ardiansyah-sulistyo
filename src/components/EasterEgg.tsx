@@ -5,12 +5,12 @@ interface EasterEggProps {
   children: React.ReactNode;
 }
 
+const secretCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+
 const EasterEgg = ({ children }: EasterEggProps) => {
   const [isTriggered, setIsTriggered] = useState(false);
   const [keySequence, setKeySequence] = useState<string[]>([]);
   const [showMessage, setShowMessage] = useState(false);
-
-  const secretCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
