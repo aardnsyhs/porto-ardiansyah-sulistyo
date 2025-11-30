@@ -35,7 +35,7 @@ const Footer = () => {
               </svg>
             </a>
             <a
-              href="mailto:ardiansyahsulistyo@icloud.com"
+              href="mailto:contact@ardiansyahsulistyo.me"
               className="text-muted-foreground hover:text-foreground transition-colors duration-300"
               aria-label="Email Contact"
             >

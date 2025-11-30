@@ -19,8 +19,8 @@ const ContactSection = () => {
         </svg>
       ),
       label: "Email",
-      value: "ardiansyahsulistyo@icloud.com",
-      link: "mailto:ardiansyahsulistyo@icloud.com",
+      value: "contact@ardiansyahsulistyo.me",
+      link: "mailto:contact@ardiansyahsulistyo.me",
     },
     {
       icon: (
@@ -113,7 +113,7 @@ const ContactSection = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="mailto:ardiansyahsulistyo@icloud.com"
+                  href="mailto:contact@ardiansyahsulistyo.me"
                   className="portfolio-button-primary group"
                 >
                   <span className="group-hover:text-white transition-colors duration-300">
