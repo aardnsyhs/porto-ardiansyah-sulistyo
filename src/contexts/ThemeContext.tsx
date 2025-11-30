@@ -46,8 +46,19 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  const toggleTheme = async () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    
+    // Check if View Transitions API is supported
+    if (!document.startViewTransition) {
+      setTheme(newTheme);
+      return;
+    }
+
+    // Trigger view transition with paint splash effect
+    await document.startViewTransition(() => {
+      setTheme(newTheme);
+    }).ready;
   };
 
   return (

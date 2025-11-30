@@ -339,6 +339,65 @@
   }
 }
 
+/* Theme Toggle Paint Splash Animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Paint splash from top-right (dark to light) */
+.light::view-transition-old(root) {
+  animation-name: theme-fade-out;
+}
+
+.light::view-transition-new(root) {
+  animation-name: theme-paint-splash-from-top-right;
+}
+
+/* Paint splash from bottom-left (light to dark) */
+html:not(.light)::view-transition-old(root) {
+  animation-name: theme-fade-out;
+}
+
+html:not(.light)::view-transition-new(root) {
+  animation-name: theme-paint-splash-from-bottom-left;
+}
+
+@keyframes theme-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes theme-paint-splash-from-top-right {
+  0% {
+    clip-path: circle(0% at 100% 0%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: circle(150% at 100% 0%);
+    opacity: 1;
+  }
+}
+
+@keyframes theme-paint-splash-from-bottom-left {
+  0% {
+    clip-path: circle(0% at 0% 100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: circle(150% at 0% 100%);
+    opacity: 1;
+  }
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -355,5 +414,11 @@
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+  
+  /* Disable theme transition animations */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
   }
 }
