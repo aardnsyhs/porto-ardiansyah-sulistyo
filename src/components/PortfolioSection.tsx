@@ -4,6 +4,8 @@ import ProjectModal from "./ProjectModal";
 import eCommercePhoto from "@/assets/e-commerce-photo.png";
 import summizeItPhoto from "@/assets/summizeit-photo.png";
 import nexabookPhoto from "@/assets/nexabook-photo.png";
+import syncspacePhoto from "@/assets/syncspace-photo.png";
+import eksamPhoto from "@/assets/eksam-photo.png";
 import { Eye, ExternalLink, ArrowRight } from "lucide-react";
 import OptimizedImage from "./OptimizedImage";
 
@@ -60,19 +62,48 @@ const PortfolioSection = () => {
     },
     {
       id: 4,
-      title: "Portfolio Website",
+      slug: "syncspace",
+      title: "Syncspace",
       description:
-        "Responsive portfolio website showcasing modern design principles and optimized user experience across all devices.",
-      technologies: ["React.js", "TailwindCSS", "JavaScript"],
-      category: "Frontend & UI",
-      image: "/api/placeholder/400/300",
+        "Real-time collaborative workspace platform with document editing, team communication, and project management features.",
+      technologies: [
+        "React.js",
+        "Laravel",
+        "MySQL",
+        "TailwindCSS",
+        "Pusher",
+        "Ably",
+      ],
+      category: "Full Stack Web",
+      image: syncspacePhoto,
       links: {
-        live: "#",
-        github: "#",
+        live: "https://syncspace-seven.vercel.app",
+        github: "https://github.com/aardnsyhs/syncspace",
       },
     },
     {
       id: 5,
+      slug: "eksam-redesign",
+      title: "Redesign UI Eksam",
+      description:
+        "Modern UI/UX redesign for Eksam platform featuring enhanced user experience, responsive design, and seamless navigation.",
+      technologies: [
+        "Next.js",
+        "TailwindCSS",
+        "TypeScript",
+        "Radix UI",
+        "SWR",
+        "Firebase",
+      ],
+      category: "Frontend & UI",
+      image: eksamPhoto,
+      links: {
+        live: "https://gitlab.com/ardiansyahs/eksam_web_nextjs",
+        github: "https://gitlab.com/ardiansyahs/eksam_web_nextjs",
+      },
+    },
+    {
+      id: 6,
       title: "Restaurant Management System",
       description:
         "Full-stack restaurant management application with order processing, inventory management, and customer relationship features.",
@@ -84,19 +115,7 @@ const PortfolioSection = () => {
         github: "#",
       },
     },
-    {
-      id: 6,
-      title: "E-Learning Platform",
-      description:
-        "A comprehensive learning management system built for educational institutions with course management, student tracking, and interactive features.",
-      technologies: ["Laravel", "React.js", "MySQL", "TailwindCSS"],
-      category: "Full Stack Web",
-      image: "/api/placeholder/400/300",
-      links: {
-        live: "#",
-        github: "#",
-      },
-    },
+
   ];
 
   const categories = [

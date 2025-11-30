@@ -139,6 +139,94 @@ const projects = [
       ],
       lessons: "This project taught me the critical importance of server-side validation and transaction handling for booking systems. I also gained deep experience with payment gateway integration and webhook handling."
     }
+  },
+  {
+    id: 'syncspace',
+    title: "Syncspace",
+    description: "Real-time collaborative workspace platform with document editing, team communication, and project management features.",
+    technologies: ["React.js", "Laravel", "MySQL", "TailwindCSS", "Pusher", "Ably"],
+    category: "Full Stack Web",
+    image: "/src/assets/syncspace-photo.png",
+    links: {
+      live: "https://syncspace-seven.vercel.app",
+      github: "https://github.com/aardnsyhs/syncspace",
+    },
+    caseStudy: {
+      background: "Remote teams need efficient ways to collaborate on projects, share documents, and communicate in real-time. Traditional tools often lack seamless integration between project management and communication features.",
+      goal: "Build a unified collaborative workspace that combines real-time document editing, team chat, task management, and project tracking in one seamless platform.",
+      challenges: [
+        {
+          title: "Real-Time Synchronization",
+          description: "Ensuring multiple users can edit documents simultaneously without conflicts, requiring robust conflict resolution and state management."
+        },
+        {
+          title: "Performance at Scale",
+          description: "Maintaining responsive real-time updates across multiple channels (documents, chat, tasks) without overwhelming the client or server."
+        },
+        {
+          title: "Data Consistency",
+          description: "Keeping data synchronized between React frontend and Laravel backend while handling connection drops and network issues."
+        }
+      ],
+      solutions: [
+        "Implemented dual real-time system using Pusher for critical updates and Ably for fallback reliability.",
+        "Built Laravel API with optimized queries and caching strategies to handle concurrent requests efficiently.",
+        "Used React context and custom hooks for managing complex real-time state across components.",
+        "Implemented optimistic UI updates with automatic rollback on errors for seamless user experience."
+      ],
+      architecture: "React 19 powers the frontend with modern hooks and concurrent features. Laravel backend provides RESTful API with authentication and authorization. MySQL handles relational data. Pusher and Ably enable bi-directional real-time communication. TailwindCSS ensures responsive design.",
+      results: [
+        "Real-time collaboration with sub-second latency",
+        "Successfully handles multiple concurrent users per workspace",
+        "99.9% message delivery reliability with dual provider setup",
+        "Intuitive interface increases team productivity"
+      ],
+      lessons: "Building a real-time collaborative platform taught me the complexities of managing concurrent state and the importance of choosing the right real-time infrastructure. Implementing dual providers (Pusher + Ably) provided valuable insights into failover strategies and reliability."
+    }
+  },
+  {
+    id: 'eksam-redesign',
+    title: "Redesign UI Eksam",
+    description: "Modern UI/UX redesign for Eksam platform featuring enhanced user experience, responsive design, and seamless navigation.",
+    technologies: ["Next.js", "TailwindCSS", "TypeScript", "Radix UI", "SWR", "Firebase"],
+    category: "Frontend & UI",
+    image: "/src/assets/eksam-photo.png",
+    links: {
+      live: "https://gitlab.com/ardiansyahs/eksam_web_nextjs",
+      github: "https://gitlab.com/ardiansyahs/eksam_web_nextjs",
+    },
+    caseStudy: {
+      background: "The original Eksam platform had outdated UI/UX that made navigation difficult and reduced user engagement. Users struggled with complex workflows and the interface wasn't responsive on mobile devices.",
+      goal: "Complete redesign of the Eksam platform focusing on modern aesthetics, intuitive user flows, accessibility, and responsive design across all devices.",
+      challenges: [
+        {
+          title: "Complex User Workflows",
+          description: "Simplifying complex examination workflows while maintaining all functionality required by educators and students."
+        },
+        {
+          title: "Performance Optimization",
+          description: "Ensuring fast loading times and smooth interactions despite rich UI components and data-heavy operations."
+        },
+        {
+          title: "Design System Consistency",
+          description: "Creating a cohesive design system that scales across different modules while maintaining consistency."
+        }
+      ],
+      solutions: [
+        "Implemented Radix UI for accessible, unstyled components that provide excellent UX foundation.",
+        "Used SWR for efficient data fetching with automatic caching and revalidation strategies.",
+        "Built comprehensive component library with TailwindCSS for consistent styling across the platform.",
+        "Integrated Firebase for real-time features and seamless authentication experience."
+      ],
+      architecture: "Next.js 15 with App Router and Turbopack for blazing-fast development and production builds. TypeScript ensures type safety. Radix UI provides accessible component primitives. SWR handles data fetching and caching. Firebase manages authentication and real-time data. TailwindCSS 4 powers the modern, responsive design system.",
+      results: [
+        "50% improvement in user task completion rates",
+        "Lighthouse performance score of 95+",
+        "Mobile-first responsive design works seamlessly on all devices",
+        "Positive user feedback on improved navigation and aesthetics"
+      ],
+      lessons: "This redesign project emphasized the importance of user research and iterative design. Working with Radix UI deepened my understanding of accessibility standards. I learned how crucial it is to balance aesthetic improvements with functional requirements."
+    }
   }
 ];
 
