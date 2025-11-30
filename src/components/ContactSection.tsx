@@ -105,11 +105,7 @@ const ContactSection = () => {
               <p className="portfolio-body max-w-xl mx-auto text-center leading-relaxed">
                 Got an exciting project or just want to chat about tech? I'm
                 always up for a good conversation and new challenges. Coffee's
-                on me if you're{" "}
-                <span className="inline-flex items-center gap-1 align-middle leading-none">
-                  <span>local!</span>
-                  <Coffee className="w-5 h-5 align-middle inline-block" />
-                </span>
+                on me if you're local!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
