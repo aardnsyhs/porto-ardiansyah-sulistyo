@@ -17,19 +17,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            # Masuk ke folder project
             cd /var/www/html
-
-            # Tarik kode terbaru dari GitHub
-            git pull origin main
-
-            # Install library baru (jika ada)
+            git fetch origin
+            git reset --hard origin/main
             npm install
-
-            # Build ulang website
             npm run build
-
-            # (Opsional) Restart Nginx untuk memastikan cache bersih
             sudo systemctl reload nginx
-            # Catatan: Baris di atas butuh setting sudo tanpa password,
-            # untuk tahap awal bisa di-skip/comment dulu.
