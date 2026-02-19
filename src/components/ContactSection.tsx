@@ -120,7 +120,7 @@ const ContactSection = () => {
                   </span>
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/ardiansyah-sulistyo-832a792b8/"
+                  href="https://www.linkedin.com/in/ardiansyah-sulistyo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="portfolio-button-secondary group flex items-center"
