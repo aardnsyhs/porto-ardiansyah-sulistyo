@@ -1,4 +1,4 @@
-import { Coffee, Handshake, MessageCircle, Rocket } from "lucide-react";
+import { Handshake, MessageCircle, Rocket } from "lucide-react";
 
 const ContactSection = () => {
   const contactInfo = [
