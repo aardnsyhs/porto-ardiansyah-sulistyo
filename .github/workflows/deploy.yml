@@ -30,6 +30,6 @@ jobs:
             npm run build
 
             # (Opsional) Restart Nginx untuk memastikan cache bersih
-            # sudo systemctl reload nginx
+            sudo systemctl reload nginx
             # Catatan: Baris di atas butuh setting sudo tanpa password,
             # untuk tahap awal bisa di-skip/comment dulu.
