@@ -1,24 +1,35 @@
-name: Deploy to VPS
+name: Deploy to Azure
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            # Masuk ke folder project
+            cd /var/www/html
 
-      - name: Setup SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          printf "Host vps-porto\n  HostName %s\n  User %s\n  IdentityFile ~/.ssh/id_ed25519\n  StrictHostKeyChecking no\n" "${{ secrets.VPS_HOST }}" "${{ secrets.VPS_USER }}" >> ~/.ssh/config
+            # Tarik kode terbaru dari GitHub
+            git pull origin main
 
-      - name: Run deploy script on VPS
-        run: |
-          ssh vps-porto "cd /var/www/porto/porto-ardiansyah-sulistyo && ./deploy.sh"
+            # Install library baru (jika ada)
+            npm install
+
+            # Build ulang website
+            npm run build
+
+            # (Opsional) Restart Nginx untuk memastikan cache bersih
+            # sudo systemctl reload nginx
+            # Catatan: Baris di atas butuh setting sudo tanpa password,
+            # untuk tahap awal bisa di-skip/comment dulu.
