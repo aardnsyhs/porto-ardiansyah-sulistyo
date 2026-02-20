@@ -10,10 +10,12 @@ import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
 import Analytics from "@/components/Analytics";
 import BrandingSection from "@/components/BrandingSection";
+import SEO from "@/components/SEO";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <SEO />
       <Analytics />
       <CommandPalette />
       <Navigation />

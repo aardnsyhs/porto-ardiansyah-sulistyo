@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,15 +97,16 @@
     --gray-900: 0 0% 11%;
   }
 
-  /* Smooth theme transition */
-  * {
+  /* Smooth theme transition — scoped to reduce style recalculation cost */
+  .theme-transitioning,
+  .theme-transitioning * {
     transition-property: background-color, border-color, color, fill, stroke;
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
   }
 
-  *:focus,
-  *:active {
+  .theme-transitioning *:focus,
+  .theme-transitioning *:active {
     transition-duration: 0s;
   }
 }

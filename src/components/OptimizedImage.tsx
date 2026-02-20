@@ -11,6 +11,7 @@ interface OptimizedImageProps {
   width?: string | number;
   height?: string | number;
   sizes?: string;
+  srcSet?: string;
   priority?: boolean;
 }
 
@@ -23,6 +24,7 @@ const OptimizedImage = ({
   width,
   height,
   sizes,
+  srcSet,
   priority = false,
 }: OptimizedImageProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -38,7 +40,9 @@ const OptimizedImage = ({
       {/* Error state fallback */}
       {imageError && (
         <div className="absolute inset-0 bg-muted flex items-center justify-center">
-          <span className="text-muted-foreground text-sm">Image unavailable</span>
+          <span className="text-muted-foreground text-sm">
+            Image unavailable
+          </span>
         </div>
       )}
 
@@ -46,10 +50,11 @@ const OptimizedImage = ({
       <img
         src={src}
         alt={alt}
+        srcSet={srcSet}
         className={cn(
           "transition-opacity duration-500",
           imageLoaded ? "opacity-100" : "opacity-0",
-          className
+          className,
         )}
         loading={priority ? "eager" : loading}
         decoding="async"

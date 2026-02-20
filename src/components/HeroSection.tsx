@@ -1,13 +1,13 @@
-import profilePhoto from "@/assets/profile-photo.jpeg";
+import profilePhoto from "@/assets/optimized/profile-photo-800w.webp";
+import { Download } from "lucide-react";
 import TypingEffect from "./TypingEffect";
 import ParticleBackground from "./ParticleBackground";
 import OptimizedImage from "./OptimizedImage";
 
 const HeroSection = () => {
   return (
-    <main
+    <section
       id="home"
-      role="banner"
       className="relative min-h-screen flex items-center justify-center section-padding overflow-hidden"
       aria-label="Hero section - Ardiansyah Sulistyo Portfolio"
     >
@@ -83,10 +83,19 @@ const HeroSection = () => {
             >
               Get In Touch
             </button>
+            <a
+              href="/cv.pdf"
+              download
+              className="portfolio-button-secondary portfolio-button-focus inline-flex items-center gap-2"
+              aria-label="Download Ardiansyah Sulistyo's CV as PDF"
+            >
+              <Download className="w-4 h-4" aria-hidden="true" />
+              Download CV
+            </a>
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 

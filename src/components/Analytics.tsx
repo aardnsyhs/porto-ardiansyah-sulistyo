@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 // Extend Window interface for Google Analytics
 declare global {
@@ -11,11 +11,11 @@ declare global {
 // Lightweight analytics component - can be easily switched to any provider
 const Analytics = () => {
   useEffect(() => {
-    // Google Analytics 4 (replace with your tracking ID)
-    const GA_TRACKING_ID = 'G-XXXXXXXXXX'; // Replace with actual GA4 tracking ID
-    
+    // Google Analytics 4
+    const GA_TRACKING_ID = "G-QMQHNEZQ7J";
+
     // Load Google Analytics script
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
     document.head.appendChild(script);
@@ -25,19 +25,19 @@ const Analytics = () => {
     function gtag(...args: unknown[]) {
       window.dataLayer!.push(args);
     }
-    
+
     // Set gtag on window
     window.gtag = gtag;
-    
-    gtag('js', new Date());
-    gtag('config', GA_TRACKING_ID, {
+
+    gtag("js", new Date());
+    gtag("config", GA_TRACKING_ID, {
       page_title: document.title,
       page_location: window.location.href,
     });
 
     // Track page views
     const trackPageView = () => {
-      gtag('event', 'page_view', {
+      gtag("event", "page_view", {
         page_title: document.title,
         page_location: window.location.href,
       });
@@ -45,13 +45,13 @@ const Analytics = () => {
 
     // Track section views when scrolling
     const trackSectionView = (sectionName: string) => {
-      gtag('event', 'section_view', {
+      gtag("event", "section_view", {
         section_name: sectionName,
       });
     };
 
     // Set up intersection observer for section tracking
-    const sections = document.querySelectorAll('section[id]');
+    const sections = document.querySelectorAll("section[id]");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -60,7 +60,7 @@ const Analytics = () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -71,7 +71,9 @@ const Analytics = () => {
     return () => {
       observer.disconnect();
       // Clean up script
-      const existingScript = document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}"]`);
+      const existingScript = document.querySelector(
+        `script[src*="googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}"]`,
+      );
       if (existingScript) {
         document.head.removeChild(existingScript);
       }
@@ -84,40 +86,43 @@ const Analytics = () => {
 export default Analytics;
 
 // Analytics utility functions for manual tracking
-export const trackEvent = (eventName: string, parameters?: Record<string, unknown>) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag!('event', eventName, parameters);
+export const trackEvent = (
+  eventName: string,
+  parameters?: Record<string, unknown>,
+) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag!("event", eventName, parameters);
   }
 };
 
 export const trackClick = (element: string, location?: string) => {
-  trackEvent('click', {
+  trackEvent("click", {
     element_name: element,
     location: location || window.location.pathname,
   });
 };
 
 export const trackProjectView = (projectId: string, projectTitle: string) => {
-  trackEvent('project_view', {
+  trackEvent("project_view", {
     project_id: projectId,
     project_title: projectTitle,
   });
 };
 
 export const trackThemeToggle = (theme: string) => {
-  trackEvent('theme_toggle', {
+  trackEvent("theme_toggle", {
     new_theme: theme,
   });
 };
 
 export const trackDownload = (fileName: string) => {
-  trackEvent('download', {
+  trackEvent("download", {
     file_name: fileName,
   });
 };
 
 export const trackContactSubmission = () => {
-  trackEvent('contact_form_submit', {
-    form_location: 'contact_section',
+  trackEvent("contact_form_submit", {
+    form_location: "contact_section",
   });
 };

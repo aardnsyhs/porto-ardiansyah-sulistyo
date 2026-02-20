@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 interface Particle {
   x: number;
@@ -14,10 +14,10 @@ interface ParticleBackgroundProps {
   speed?: number;
 }
 
-const ParticleBackground = ({ 
-  className = "", 
+const ParticleBackground = ({
+  className = "",
   particleCount = 50,
-  speed = 0.5 
+  speed = 0.5,
 }: ParticleBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
@@ -27,8 +27,10 @@ const ParticleBackground = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    let isVisible = true;
 
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth * window.devicePixelRatio;
@@ -50,9 +52,11 @@ const ParticleBackground = ({
     };
 
     const animate = () => {
+      if (!isVisible) return;
+
       ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
-      
-      particlesRef.current.forEach(particle => {
+
+      particlesRef.current.forEach((particle) => {
         // Update position
         particle.x += particle.vx;
         particle.y += particle.vy;
@@ -77,18 +81,31 @@ const ParticleBackground = ({
     createParticles();
     animate();
 
+    // Pause animation when offscreen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !animationRef.current) {
+          animate();
+        }
+      },
+      { threshold: 0 },
+    );
+    observer.observe(canvas);
+
     const handleResize = () => {
       resizeCanvas();
       createParticles();
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      window.removeEventListener('resize', handleResize);
+      observer.disconnect();
+      window.removeEventListener("resize", handleResize);
     };
   }, [particleCount, speed]);
 
@@ -96,7 +113,9 @@ const ParticleBackground = ({
     <canvas
       ref={canvasRef}
       className={`absolute inset-0 pointer-events-none ${className}`}
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: "100%", height: "100%" }}
+      aria-hidden="true"
+      role="presentation"
     />
   );
 };

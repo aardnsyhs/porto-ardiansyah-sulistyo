@@ -27,7 +27,7 @@ const StatItem = ({
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     if (elementRef.current) {
@@ -86,7 +86,7 @@ const StatsSection = () => {
     },
     {
       icon: <Calendar className="w-8 h-8" />,
-      value: 1,
+      value: 2,
       label: "Years Experience",
       suffix: "+",
     },

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
-import { X, Menu } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
-import EasterEgg from './EasterEgg';
+import { useState, useEffect, useCallback, useRef } from "react";
+import { cn } from "@/lib/utils";
+import { X, Menu } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
+import EasterEgg from "./EasterEgg";
 
 interface NavItem {
   id: string;
@@ -10,55 +10,89 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'portfolio', label: 'Portfolio' },
-  { id: 'contact', label: 'Contact' },
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "portfolio", label: "Portfolio" },
+  { id: "contact", label: "Contact" },
 ];
 
 const Navigation = () => {
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const ticking = useRef(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
+  // Throttled scroll handler using rAF
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (ticking.current) return;
+      ticking.current = true;
 
-      // Update active section based on scroll position
-      const sections = navItems.map(item => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 100;
+      requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 50);
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navItems[i].id);
-          break;
+        // Update active section based on scroll position
+        const scrollPosition = window.scrollY + 100;
+        for (let i = navItems.length - 1; i >= 0; i--) {
+          const section = document.getElementById(navItems[i].id);
+          if (section && section.offsetTop <= scrollPosition) {
+            setActiveSection(navItems[i].id);
+            break;
+          }
         }
+
+        ticking.current = false;
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  // ESC key handler for mobile menu
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isMobileMenuOpen]);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false); // Close mobile menu when navigating
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false);
     }
-  };
+  }, []);
 
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? 'bg-background/95 backdrop-blur-sm border-b border-border'
-          : 'bg-transparent'
+          ? "bg-background/95 backdrop-blur-sm border-b border-border"
+          : "bg-transparent",
       )}
     >
       <div className="container-portfolio">
@@ -66,7 +100,10 @@ const Navigation = () => {
           {/* Logo */}
           <div className="font-bold text-xl tracking-tight">
             <EasterEgg>
-              <button onClick={() => scrollToSection('home')} className="hover:text-primary transition-colors duration-300">
+              <button
+                onClick={() => scrollToSection("home")}
+                className="hover:text-primary transition-colors duration-300"
+              >
                 <span className="text-primary">A</span>rdiansyah
               </button>
             </EasterEgg>
@@ -80,13 +117,13 @@ const Navigation = () => {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={cn(
-                    'portfolio-link text-sm font-medium transition-colors duration-300 focus-ring rounded',
+                    "portfolio-link text-sm font-medium transition-colors duration-300 focus-ring rounded",
                     activeSection === item.id
-                      ? 'text-primary'
-                      : 'text-muted-foreground hover:text-foreground'
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-foreground",
                   )}
                   aria-label={`Navigate to ${item.label} section`}
-                  aria-current={activeSection === item.id ? 'page' : undefined}
+                  aria-current={activeSection === item.id ? "page" : undefined}
                 >
                   {item.label}
                 </button>
@@ -98,9 +135,16 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <div className="flex items-center space-x-3 md:hidden">
             <ThemeToggle />
-            <button 
+            <button
               className="p-2 text-foreground hover:text-primary transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-nav-menu"
+              aria-label={
+                isMobileMenuOpen
+                  ? "Close navigation menu"
+                  : "Open navigation menu"
+              }
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -109,7 +153,13 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-sm border-b border-border">
+          <div
+            ref={menuRef}
+            id="mobile-nav-menu"
+            className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-sm border-b border-border"
+            role="dialog"
+            aria-label="Navigation menu"
+          >
             <div className="container-portfolio py-4">
               <div className="flex flex-col space-y-4">
                 {navItems.map((item) => (
@@ -117,10 +167,10 @@ const Navigation = () => {
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
                     className={cn(
-                      'text-left py-2 text-base font-medium transition-colors duration-300',
+                      "text-left py-2 text-base font-medium transition-colors duration-300",
                       activeSection === item.id
-                        ? 'text-primary'
-                        : 'text-muted-foreground hover:text-foreground'
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-foreground",
                     )}
                   >
                     {item.label}

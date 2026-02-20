@@ -1,5 +1,10 @@
 /// <reference types="vite/client" />
 
+declare module "*.webp" {
+  const src: string;
+  export default src;
+}
+
 // View Transitions API type definitions
 interface ViewTransition {
   finished: Promise<void>;
@@ -9,5 +14,7 @@ interface ViewTransition {
 }
 
 interface Document {
-  startViewTransition(updateCallback: () => void | Promise<void>): ViewTransition;
+  startViewTransition(
+    updateCallback: () => void | Promise<void>,
+  ): ViewTransition;
 }
