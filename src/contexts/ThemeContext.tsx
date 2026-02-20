@@ -1,6 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useThemeTransition } from "@/hooks/useThemeTransition";
-import ThemeTransitionOverlay from "@/components/ThemeTransitionOverlay";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 type Theme = "dark" | "light";
 
@@ -24,18 +22,13 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [theme, setTheme] = useState<Theme>("dark");
-  const transition = useThemeTransition();
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as Theme;
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-
-    const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
-    setTheme(initialTheme);
-  }, []);
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem("theme") as Theme | null;
+    if (savedTheme === "dark" || savedTheme === "light") {
+      return savedTheme;
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  });
 
   useEffect(() => {
     const root = document.documentElement;
@@ -49,22 +42,13 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    transition.start(theme, () => {
-      setTheme(theme === "dark" ? "light" : "dark");
-    });
-  };
+  const toggleTheme = useCallback(() => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
-      {transition.overlay && (
-        <ThemeTransitionOverlay
-          direction={transition.overlay.direction}
-          targetBg={transition.overlay.targetBg}
-          onAnimationEnd={transition.overlay.onMidpoint}
-        />
-      )}
     </ThemeContext.Provider>
   );
 };
