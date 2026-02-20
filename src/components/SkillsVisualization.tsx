@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 interface Skill {
   name: string;
@@ -8,10 +8,13 @@ interface Skill {
 
 interface SkillsVisualizationProps {
   skills: Skill[];
-  type?: 'radar' | 'bar';
+  type?: "radar" | "bar";
 }
 
-const SkillsVisualization = ({ skills, type = 'bar' }: SkillsVisualizationProps) => {
+const SkillsVisualization = ({
+  skills,
+  type = "bar",
+}: SkillsVisualizationProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -22,7 +25,7 @@ const SkillsVisualization = ({ skills, type = 'bar' }: SkillsVisualizationProps)
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     if (containerRef.current) {
@@ -33,13 +36,13 @@ const SkillsVisualization = ({ skills, type = 'bar' }: SkillsVisualizationProps)
   }, []);
 
   const colors = [
-    'hsl(var(--primary))',
-    'hsl(var(--accent))',
-    'hsl(var(--muted-foreground))',
-    'hsl(var(--border))',
+    "hsl(var(--primary))",
+    "hsl(var(--accent))",
+    "hsl(var(--muted-foreground))",
+    "hsl(var(--border))",
   ];
 
-  if (type === 'bar') {
+  if (type === "bar") {
     return (
       <div ref={containerRef} className="space-y-6">
         {skills.map((skill, index) => (
@@ -55,10 +58,10 @@ const SkillsVisualization = ({ skills, type = 'bar' }: SkillsVisualizationProps)
             <div className="h-2 bg-muted rounded-full overflow-hidden">
               <div
                 className={`h-full bg-primary transition-all duration-1000 ease-out ${
-                  isVisible ? 'opacity-100' : 'opacity-0'
+                  isVisible ? "opacity-100" : "opacity-0"
                 }`}
                 style={{
-                  width: isVisible ? `${skill.level}%` : '0%',
+                  width: isVisible ? `${skill.level}%` : "0%",
                   transitionDelay: `${index * 100}ms`,
                 }}
               />
@@ -69,11 +72,9 @@ const SkillsVisualization = ({ skills, type = 'bar' }: SkillsVisualizationProps)
     );
   }
 
-  // Radar chart implementation (simplified)
   return (
     <div ref={containerRef} className="relative w-full max-w-md mx-auto">
       <svg viewBox="0 0 200 200" className="w-full h-auto">
-        {/* Grid lines */}
         {[20, 40, 60, 80, 100].map((radius) => (
           <circle
             key={radius}
@@ -86,15 +87,13 @@ const SkillsVisualization = ({ skills, type = 'bar' }: SkillsVisualizationProps)
             opacity="0.3"
           />
         ))}
-        
-        {/* Skill lines */}
         {skills.map((skill, index) => {
           const angle = (index * 360) / skills.length;
           const x1 = 100;
           const y1 = 100;
-          const x2 = 100 + Math.cos((angle - 90) * Math.PI / 180) * 80;
-          const y2 = 100 + Math.sin((angle - 90) * Math.PI / 180) * 80;
-          
+          const x2 = 100 + Math.cos(((angle - 90) * Math.PI) / 180) * 80;
+          const y2 = 100 + Math.sin(((angle - 90) * Math.PI) / 180) * 80;
+
           return (
             <line
               key={skill.name}
@@ -108,32 +107,32 @@ const SkillsVisualization = ({ skills, type = 'bar' }: SkillsVisualizationProps)
             />
           );
         })}
-        
-        {/* Skill polygon */}
         <polygon
-          points={skills.map((skill, index) => {
-            const angle = (index * 360) / skills.length;
-            const distance = (skill.level / 100) * 80;
-            const x = 100 + Math.cos((angle - 90) * Math.PI / 180) * distance;
-            const y = 100 + Math.sin((angle - 90) * Math.PI / 180) * distance;
-            return `${x},${y}`;
-          }).join(' ')}
+          points={skills
+            .map((skill, index) => {
+              const angle = (index * 360) / skills.length;
+              const distance = (skill.level / 100) * 80;
+              const x =
+                100 + Math.cos(((angle - 90) * Math.PI) / 180) * distance;
+              const y =
+                100 + Math.sin(((angle - 90) * Math.PI) / 180) * distance;
+              return `${x},${y}`;
+            })
+            .join(" ")}
           fill="hsl(var(--primary))"
           fillOpacity="0.2"
           stroke="hsl(var(--primary))"
           strokeWidth="2"
           className={`transition-all duration-1000 ${
-            isVisible ? 'opacity-100' : 'opacity-0'
+            isVisible ? "opacity-100" : "opacity-0"
           }`}
         />
-        
-        {/* Skill points */}
         {skills.map((skill, index) => {
           const angle = (index * 360) / skills.length;
           const distance = (skill.level / 100) * 80;
-          const x = 100 + Math.cos((angle - 90) * Math.PI / 180) * distance;
-          const y = 100 + Math.sin((angle - 90) * Math.PI / 180) * distance;
-          
+          const x = 100 + Math.cos(((angle - 90) * Math.PI) / 180) * distance;
+          const y = 100 + Math.sin(((angle - 90) * Math.PI) / 180) * distance;
+
           return (
             <circle
               key={skill.name}
@@ -142,20 +141,18 @@ const SkillsVisualization = ({ skills, type = 'bar' }: SkillsVisualizationProps)
               r="4"
               fill="hsl(var(--primary))"
               className={`transition-all duration-1000 ${
-                isVisible ? 'opacity-100' : 'opacity-0'
+                isVisible ? "opacity-100" : "opacity-0"
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             />
           );
         })}
-        
-        {/* Labels */}
         {skills.map((skill, index) => {
           const angle = (index * 360) / skills.length;
           const distance = 95;
-          const x = 100 + Math.cos((angle - 90) * Math.PI / 180) * distance;
-          const y = 100 + Math.sin((angle - 90) * Math.PI / 180) * distance;
-          
+          const x = 100 + Math.cos(((angle - 90) * Math.PI) / 180) * distance;
+          const y = 100 + Math.sin(((angle - 90) * Math.PI) / 180) * distance;
+
           return (
             <text
               key={skill.name}

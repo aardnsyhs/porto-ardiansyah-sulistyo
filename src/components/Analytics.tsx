@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-// Extend Window interface for Google Analytics
 declare global {
   interface Window {
     dataLayer?: unknown[];
@@ -8,25 +7,20 @@ declare global {
   }
 }
 
-// Lightweight analytics component - can be easily switched to any provider
 const Analytics = () => {
   useEffect(() => {
-    // Google Analytics 4
     const GA_TRACKING_ID = "G-QMQHNEZQ7J";
 
-    // Load Google Analytics script
     const script = document.createElement("script");
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
     document.head.appendChild(script);
 
-    // Initialize gtag
     window.dataLayer = window.dataLayer || [];
     function gtag(...args: unknown[]) {
       window.dataLayer!.push(args);
     }
 
-    // Set gtag on window
     window.gtag = gtag;
 
     gtag("js", new Date());
@@ -35,7 +29,6 @@ const Analytics = () => {
       page_location: window.location.href,
     });
 
-    // Track page views
     const trackPageView = () => {
       gtag("event", "page_view", {
         page_title: document.title,
@@ -43,14 +36,12 @@ const Analytics = () => {
       });
     };
 
-    // Track section views when scrolling
     const trackSectionView = (sectionName: string) => {
       gtag("event", "section_view", {
         section_name: sectionName,
       });
     };
 
-    // Set up intersection observer for section tracking
     const sections = document.querySelectorAll("section[id]");
     const observer = new IntersectionObserver(
       (entries) => {
@@ -65,12 +56,10 @@ const Analytics = () => {
 
     sections.forEach((section) => observer.observe(section));
 
-    // Track initial page load
     trackPageView();
 
     return () => {
       observer.disconnect();
-      // Clean up script
       const existingScript = document.querySelector(
         `script[src*="googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}"]`,
       );
@@ -80,12 +69,11 @@ const Analytics = () => {
     };
   }, []);
 
-  return null; // This component doesn't render anything
+  return null;
 };
 
 export default Analytics;
 
-// Analytics utility functions for manual tracking
 export const trackEvent = (
   eventName: string,
   parameters?: Record<string, unknown>,

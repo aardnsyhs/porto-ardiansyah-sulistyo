@@ -25,7 +25,6 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    // Check for saved theme or default to dark
     const savedTheme = localStorage.getItem("theme") as Theme;
     const systemPrefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)",
@@ -36,10 +35,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   }, []);
 
   useEffect(() => {
-    // Update DOM and localStorage
     const root = document.documentElement;
 
-    // Add transition class for smooth theme change, remove after transition
     root.classList.add("theme-transitioning");
     const timeout = setTimeout(() => {
       root.classList.remove("theme-transitioning");
@@ -59,13 +56,11 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const toggleTheme = async () => {
     const newTheme = theme === "dark" ? "light" : "dark";
 
-    // Check if View Transitions API is supported
     if (!document.startViewTransition) {
       setTheme(newTheme);
       return;
     }
 
-    // Trigger view transition with paint splash effect
     await document.startViewTransition(() => {
       setTheme(newTheme);
     }).ready;

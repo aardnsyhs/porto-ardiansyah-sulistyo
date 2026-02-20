@@ -114,9 +114,7 @@ const InteractiveTimeline = () => {
 
   return (
     <div className="relative">
-      {/* Timeline Line */}
       <div className="absolute left-8 top-0 bottom-0 w-px bg-border"></div>
-
       <div className="space-y-8">
         {timelineData.map((item, index) => (
           <div
@@ -130,7 +128,6 @@ const InteractiveTimeline = () => {
               setSelectedItem(selectedItem === item.id ? null : item.id)
             }
           >
-            {/* Timeline Dot */}
             <div
               className={`absolute left-6 w-4 h-4 rounded-full border-2 bg-background transition-all duration-300 ${
                 selectedItem === item.id
@@ -138,8 +135,6 @@ const InteractiveTimeline = () => {
                   : "border-muted-foreground hover:border-primary"
               }`}
             ></div>
-
-            {/* Content Card */}
             <div
               className={`portfolio-card transition-all duration-300 ${
                 selectedItem === item.id
@@ -147,12 +142,11 @@ const InteractiveTimeline = () => {
                   : "hover:border-gray-300"
               }`}
             >
-              {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                 <div className="flex items-center gap-3">
                   <span
                     className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border ${getTypeColor(
-                      item.type
+                      item.type,
                     )}`}
                   >
                     {getTypeIcon(item.type)}
@@ -170,16 +164,12 @@ const InteractiveTimeline = () => {
                   </div>
                 )}
               </div>
-
-              {/* Title and Company */}
               <div className="mb-4">
                 <h3 className="text-xl font-semibold text-foreground mb-1">
                   {item.title}
                 </h3>
                 <p className="text-primary font-medium">{item.company}</p>
               </div>
-
-              {/* Description */}
               <div
                 className={`transition-all duration-300 overflow-hidden ${
                   selectedItem === item.id
@@ -195,8 +185,6 @@ const InteractiveTimeline = () => {
                     </li>
                   ))}
                 </ul>
-
-                {/* Technologies */}
                 {item.technologies && (
                   <div>
                     <p className="text-sm font-medium text-foreground mb-2">
@@ -215,8 +203,6 @@ const InteractiveTimeline = () => {
                   </div>
                 )}
               </div>
-
-              {/* Click indicator */}
               <div className="mt-4 pt-3 border-t border-border">
                 <p className="text-xs text-muted-foreground text-center">
                   {selectedItem === item.id

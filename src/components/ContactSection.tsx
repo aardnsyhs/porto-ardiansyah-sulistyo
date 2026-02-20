@@ -59,7 +59,6 @@ const ContactSection = () => {
     <section id="contact" className="section-padding bg-surface">
       <div className="container-portfolio">
         <div className="max-w-4xl mx-auto">
-          {/* Section Header */}
           <div className="text-center mb-16 fade-in">
             <h2 className="portfolio-subheading mb-4">Get In Touch</h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
@@ -68,8 +67,6 @@ const ContactSection = () => {
               projects. Let's connect and discuss how we can work together.
             </p>
           </div>
-
-          {/* Contact Cards */}
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {contactInfo.map((contact, index) => (
               <a
@@ -97,8 +94,6 @@ const ContactSection = () => {
               </a>
             ))}
           </div>
-
-          {/* Call to Action */}
           <div className="text-center fade-in fade-in-delay-3">
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-center leading-tight">

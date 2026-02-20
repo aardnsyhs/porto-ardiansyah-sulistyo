@@ -28,7 +28,6 @@ const SEO = ({
       <meta name="description" content={description} />
       <link rel="canonical" href={canonicalUrl} />
 
-      {/* Open Graph */}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={description} />
@@ -36,7 +35,6 @@ const SEO = ({
       <meta property="og:image" content={image} />
       <meta property="og:site_name" content={SITE_NAME} />
 
-      {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={description} />

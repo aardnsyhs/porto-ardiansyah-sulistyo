@@ -25,7 +25,6 @@ const Navigation = () => {
   const ticking = useRef(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Throttled scroll handler using rAF
   useEffect(() => {
     const handleScroll = () => {
       if (ticking.current) return;
@@ -34,7 +33,6 @@ const Navigation = () => {
       requestAnimationFrame(() => {
         setIsScrolled(window.scrollY > 50);
 
-        // Update active section based on scroll position
         const scrollPosition = window.scrollY + 100;
         for (let i = navItems.length - 1; i >= 0; i--) {
           const section = document.getElementById(navItems[i].id);
@@ -52,7 +50,6 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Body scroll lock when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -64,7 +61,6 @@ const Navigation = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // ESC key handler for mobile menu
   useEffect(() => {
     if (!isMobileMenuOpen) return;
 
@@ -97,7 +93,6 @@ const Navigation = () => {
     >
       <div className="container-portfolio">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <div className="font-bold text-xl tracking-tight">
             <EasterEgg>
               <button
@@ -108,8 +103,6 @@ const Navigation = () => {
               </button>
             </EasterEgg>
           </div>
-
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <div className="flex items-center space-x-8">
               {navItems.map((item) => (
@@ -131,8 +124,6 @@ const Navigation = () => {
             </div>
             <ThemeToggle />
           </div>
-
-          {/* Mobile Menu Button */}
           <div className="flex items-center space-x-3 md:hidden">
             <ThemeToggle />
             <button
@@ -150,8 +141,6 @@ const Navigation = () => {
             </button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div
             ref={menuRef}

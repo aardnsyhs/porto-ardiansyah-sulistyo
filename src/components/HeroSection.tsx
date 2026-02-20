@@ -11,12 +11,9 @@ const HeroSection = () => {
       className="relative min-h-screen flex items-center justify-center section-padding overflow-hidden"
       aria-label="Hero section - Ardiansyah Sulistyo Portfolio"
     >
-      {/* Particle Background */}
       <ParticleBackground className="z-0" particleCount={60} speed={0.3} />
-
       <div className="container-portfolio relative z-10">
         <div className="text-center space-y-8">
-          {/* Profile Photo */}
           <div className="fade-in">
             <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden border-4 border-border shadow-lg">
               <OptimizedImage
@@ -29,8 +26,6 @@ const HeroSection = () => {
               />
             </div>
           </div>
-
-          {/* Name and Title */}
           <div className="space-y-4 fade-in fade-in-delay-1">
             <h1 className="portfolio-heading relative group">
               <span className="relative">
@@ -58,8 +53,6 @@ const HeroSection = () => {
               crafting digital solutions that make a difference.
             </p>
           </div>
-
-          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in fade-in-delay-2">
             <button
               onClick={() =>

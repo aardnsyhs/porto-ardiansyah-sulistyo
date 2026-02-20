@@ -5,12 +5,9 @@ const Footer = () => {
     <footer className="bg-surface border-t border-border py-8">
       <div className="container-portfolio">
         <div className="text-center space-y-4">
-          {/* Logo/Name */}
           <div className="font-bold text-xl tracking-tight text-foreground">
             Ardiansyah Sulistyo
           </div>
-
-          {/* Social Links */}
           <div className="flex justify-center space-x-6">
             <a
               href="https://github.com/aardnsyhs"
@@ -65,8 +62,6 @@ const Footer = () => {
               </svg>
             </a>
           </div>
-
-          {/* Copyright */}
           <div className="pt-4 border-t border-border">
             <p className="text-muted-foreground text-sm">
               © {currentYear} Ardiansyah Sulistyo. All rights reserved.

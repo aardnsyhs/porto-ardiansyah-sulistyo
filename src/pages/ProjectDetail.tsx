@@ -48,9 +48,7 @@ const ProjectDetail = () => {
         image={project.image}
       />
       <Navigation />
-
       <main className="pt-20">
-        {/* Hero Section */}
         <section className="section-padding bg-surface/30">
           <div className="container-portfolio max-w-6xl mx-auto">
             <Link
@@ -60,7 +58,6 @@ const ProjectDetail = () => {
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
               Back to Portfolio
             </Link>
-
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
                 <span className="text-primary text-sm font-medium mb-3 block">
@@ -72,7 +69,6 @@ const ProjectDetail = () => {
                 <p className="text-xl text-muted-foreground mb-6">
                   {project.description}
                 </p>
-
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.technologies.map((tech) => (
                     <span
@@ -83,7 +79,6 @@ const ProjectDetail = () => {
                     </span>
                   ))}
                 </div>
-
                 <div className="flex gap-4">
                   <a
                     href={project.links.live}
@@ -105,7 +100,6 @@ const ProjectDetail = () => {
                   </a>
                 </div>
               </div>
-
               <div className="rounded-lg overflow-hidden border border-border shadow-2xl">
                 <OptimizedImage
                   src={project.image}
@@ -117,11 +111,8 @@ const ProjectDetail = () => {
             </div>
           </div>
         </section>
-
-        {/* Case Study Sections */}
         <section className="section-padding">
           <div className="container-portfolio max-w-4xl mx-auto space-y-16">
-            {/* Background & Goal */}
             <div className="space-y-8">
               <div className="space-y-4">
                 <div className="flex items-center gap-3 mb-2">
@@ -132,14 +123,11 @@ const ProjectDetail = () => {
                   {caseStudy.background}
                 </p>
               </div>
-
               <div className="p-6 bg-primary/5 border-l-4 border-primary rounded-r-lg">
                 <h3 className="text-xl font-semibold mb-2">Project Goal</h3>
                 <p className="text-muted-foreground">{caseStudy.goal}</p>
               </div>
             </div>
-
-            {/* Challenges */}
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-2">
                 <Lightbulb className="w-6 h-6 text-primary" />
@@ -161,8 +149,6 @@ const ProjectDetail = () => {
                 ))}
               </div>
             </div>
-
-            {/* Solutions */}
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-2">
                 <Rocket className="w-6 h-6 text-primary" />
@@ -182,8 +168,6 @@ const ProjectDetail = () => {
                 ))}
               </ul>
             </div>
-
-            {/* Architecture */}
             <div className="space-y-4">
               <div className="flex items-center gap-3 mb-2">
                 <Calendar className="w-6 h-6 text-primary" />
@@ -195,8 +179,6 @@ const ProjectDetail = () => {
                 {caseStudy.architecture}
               </p>
             </div>
-
-            {/* Results */}
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-2">
                 <Users className="w-6 h-6 text-primary" />
@@ -213,16 +195,12 @@ const ProjectDetail = () => {
                 ))}
               </div>
             </div>
-
-            {/* Lessons Learned */}
             <div className="space-y-4">
               <h2 className="text-3xl font-bold">Lessons Learned</h2>
               <p className="text-lg text-muted-foreground leading-relaxed p-6 bg-surface rounded-lg border border-border italic">
                 {caseStudy.lessons}
               </p>
             </div>
-
-            {/* CTA */}
             <div className="text-center pt-8 border-t border-border">
               <h3 className="text-2xl font-bold mb-4">
                 Interested in working together?
@@ -248,7 +226,6 @@ const ProjectDetail = () => {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );

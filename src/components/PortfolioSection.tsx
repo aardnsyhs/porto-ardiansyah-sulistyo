@@ -31,7 +31,6 @@ const PortfolioSection = () => {
     >
       <div className="container-portfolio">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
           <div className="text-center mb-16 fade-in">
             <h2 id="portfolio-heading" className="portfolio-subheading mb-4">
               Portfolio
@@ -42,8 +41,6 @@ const PortfolioSection = () => {
               web development
             </p>
           </div>
-
-          {/* Filter Tabs */}
           <nav
             className="flex flex-wrap justify-center gap-4 mb-12 fade-in fade-in-delay-1"
             role="tablist"
@@ -67,8 +64,6 @@ const PortfolioSection = () => {
               </button>
             ))}
           </nav>
-
-          {/* Projects Grid */}
           <div
             id="projects-grid"
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr"
@@ -82,7 +77,6 @@ const PortfolioSection = () => {
                   (index % 3) + 1
                 } h-full min-h-[430px] md:min-h-[450px] flex flex-col`}
               >
-                {/* Project Image */}
                 <div className="relative overflow-hidden rounded-lg mb-4 h-48">
                   <OptimizedImage
                     src={project.image}
@@ -95,7 +89,6 @@ const PortfolioSection = () => {
                     width="400"
                     height="300"
                   />
-                  {/* Desktop hover overlay — hidden on mobile */}
                   <div className="absolute inset-0 bg-gray-900/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex items-center justify-center z-10">
                     <div className="flex space-x-4">
                       {project.slug && (
@@ -142,8 +135,6 @@ const PortfolioSection = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Mobile action bar — visible only on small screens */}
                 <div
                   className="flex items-center gap-2 mb-3 md:hidden"
                   role="toolbar"
@@ -187,14 +178,12 @@ const PortfolioSection = () => {
                     <span>Code</span>
                   </a>
                 </div>
-
                 <div className="space-y-3 flex-1 grid grid-rows-[auto_1fr_auto]">
                   <div className="flex items-center justify-between">
                     <span className="portfolio-label text-primary">
                       {project.category}
                     </span>
                   </div>
-
                   <div>
                     {project.slug ? (
                       <Link to={`/project/${project.slug}`}>
@@ -214,7 +203,6 @@ const PortfolioSection = () => {
                       {project.description}
                     </p>
                   </div>
-
                   <div
                     className="flex flex-wrap gap-2"
                     id={`project-${project.id}-tech`}
@@ -235,8 +223,6 @@ const PortfolioSection = () => {
               </div>
             ))}
           </div>
-
-          {/* View More Button */}
           <div className="text-center mt-12 fade-in fade-in-delay-3">
             <a
               href="https://github.com/aardnsyhs"
@@ -247,8 +233,6 @@ const PortfolioSection = () => {
               View More on GitHub
             </a>
           </div>
-
-          {/* Project Modal */}
           <ProjectModal
             project={selectedProject}
             isOpen={isModalOpen}

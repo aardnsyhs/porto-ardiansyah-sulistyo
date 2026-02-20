@@ -57,17 +57,14 @@ const ParticleBackground = ({
       ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
 
       particlesRef.current.forEach((particle) => {
-        // Update position
         particle.x += particle.vx;
         particle.y += particle.vy;
 
-        // Wrap around edges
         if (particle.x < 0) particle.x = canvas.offsetWidth;
         if (particle.x > canvas.offsetWidth) particle.x = 0;
         if (particle.y < 0) particle.y = canvas.offsetHeight;
         if (particle.y > canvas.offsetHeight) particle.y = 0;
 
-        // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, 1, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
@@ -81,7 +78,6 @@ const ParticleBackground = ({
     createParticles();
     animate();
 
-    // Pause animation when offscreen
     const observer = new IntersectionObserver(
       ([entry]) => {
         isVisible = entry.isIntersecting;

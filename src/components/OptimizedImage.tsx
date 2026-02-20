@@ -32,12 +32,9 @@ const OptimizedImage = ({
 
   return (
     <div className={cn("relative overflow-hidden", containerClassName)}>
-      {/* Skeleton loader */}
       {!imageLoaded && !imageError && (
         <Skeleton className="absolute inset-0 w-full h-full rounded-lg" />
       )}
-
-      {/* Error state fallback */}
       {imageError && (
         <div className="absolute inset-0 bg-muted flex items-center justify-center">
           <span className="text-muted-foreground text-sm">
@@ -45,8 +42,6 @@ const OptimizedImage = ({
           </span>
         </div>
       )}
-
-      {/* Actual image */}
       <img
         src={src}
         alt={alt}
