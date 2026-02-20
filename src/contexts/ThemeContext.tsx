@@ -37,11 +37,6 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   useEffect(() => {
     const root = document.documentElement;
 
-    root.classList.add("theme-transitioning");
-    const timeout = setTimeout(() => {
-      root.classList.remove("theme-transitioning");
-    }, 350);
-
     if (theme === "light") {
       root.classList.add("light");
     } else {
@@ -49,21 +44,10 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     }
 
     localStorage.setItem("theme", theme);
-
-    return () => clearTimeout(timeout);
   }, [theme]);
 
-  const toggleTheme = async () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-
-    if (!document.startViewTransition) {
-      setTheme(newTheme);
-      return;
-    }
-
-    await document.startViewTransition(() => {
-      setTheme(newTheme);
-    }).ready;
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
