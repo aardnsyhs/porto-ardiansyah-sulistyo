@@ -1,4 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useThemeTransition } from "@/hooks/useThemeTransition";
+import ThemeTransitionOverlay from "@/components/ThemeTransitionOverlay";
 
 type Theme = "dark" | "light";
 
@@ -23,6 +25,7 @@ interface ThemeProviderProps {
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>("dark");
+  const transition = useThemeTransition();
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as Theme;
@@ -47,12 +50,21 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    transition.start(theme, () => {
+      setTheme(theme === "dark" ? "light" : "dark");
+    });
   };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
+      {transition.overlay && (
+        <ThemeTransitionOverlay
+          direction={transition.overlay.direction}
+          targetBg={transition.overlay.targetBg}
+          onAnimationEnd={transition.overlay.onMidpoint}
+        />
+      )}
     </ThemeContext.Provider>
   );
 };

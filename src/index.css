@@ -211,7 +211,8 @@
     @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
   }
 
-  .portfolio-link:hover::after {
+  .portfolio-link:hover::after,
+  .portfolio-link-active::after {
     @apply w-full;
   }
 
@@ -356,6 +357,47 @@
     --muted: 0 0% 85%;
     --muted-foreground: 0 0% 20%;
   }
+}
+
+/* ——— Paint Spill Theme Transition ——— */
+@keyframes paint-spill-to-bl {
+  0% {
+    clip-path: polygon(100% 0%, 100% 0%, 100% 0%, 100% 0%);
+  }
+  30% {
+    clip-path: polygon(60% 0%, 100% 0%, 100% 40%, 85% 15%);
+  }
+  60% {
+    clip-path: polygon(15% 0%, 100% 0%, 100% 85%, 40% 100%, 0% 60%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes paint-spill-to-tr {
+  0% {
+    clip-path: polygon(0% 100%, 0% 100%, 0% 100%, 0% 100%);
+  }
+  30% {
+    clip-path: polygon(0% 60%, 0% 100%, 40% 100%, 15% 85%);
+  }
+  60% {
+    clip-path: polygon(0% 15%, 60% 0%, 100% 40%, 100% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+.animate-paint-spill-to-bl {
+  will-change: clip-path;
+  animation: paint-spill-to-bl 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-paint-spill-to-tr {
+  will-change: clip-path;
+  animation: paint-spill-to-tr 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* Reduced motion support */

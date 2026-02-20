@@ -110,9 +110,9 @@ const Navigation = () => {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={cn(
-                    "portfolio-link text-sm font-medium transition-colors duration-300 focus-ring rounded",
+                    "portfolio-link text-sm font-medium transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:rounded-sm",
                     activeSection === item.id
-                      ? "text-primary"
+                      ? "text-primary portfolio-link-active"
                       : "text-muted-foreground hover:text-foreground",
                   )}
                   aria-label={`Navigate to ${item.label} section`}
