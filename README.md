@@ -91,7 +91,7 @@ This portfolio is built with performance and accessibility in mind:
 
 Feel free to reach out if you want to collaborate or just say hi:
 
-- **Email**: contact@ardiansyahsulistyo.me
+- **Email**: ardiansyahsulistyo@gmail.com
 - **GitHub**: [github.com/aardnsyhs](https://github.com/aardnsyhs)
 - **LinkedIn**: [linkedin.com/in/ardiansyah-sulistyo](https://linkedin.com/in/ardiansyah-sulistyo)
 

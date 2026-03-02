@@ -79,16 +79,7 @@ const FreelanceCimahi = () => {
             </p>
             <div className="flex flex-wrap gap-3">
               <a
-                href="https://wa.me/6280000000000?text=Halo%20Ardiansyah%2C%20saya%20ingin%20diskusi%20project%20website."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="portfolio-button-primary"
-                aria-label="Contact via WhatsApp"
-              >
-                WhatsApp
-              </a>
-              <a
-                href="mailto:contact@ardiansyahsulistyo.me"
+                href="mailto:ardiansyahsulistyo@gmail.com"
                 className="portfolio-button-secondary"
                 aria-label="Contact via Email"
               >
@@ -150,7 +141,9 @@ const FreelanceCimahi = () => {
                       loading="lazy"
                     />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">{project.title}</h3>
+                  <h3 className="font-semibold text-lg mb-2">
+                    {project.title}
+                  </h3>
                   <p className="text-sm text-muted-foreground mb-4 flex-1">
                     {project.description}
                   </p>
