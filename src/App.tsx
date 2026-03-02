@@ -9,6 +9,7 @@ import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const FreelanceCimahi = lazy(() => import("./pages/FreelanceCimahi"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -32,6 +33,10 @@ const App = () => (
             >
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route
+                  path="/freelance-web-developer-cimahi"
+                  element={<FreelanceCimahi />}
+                />
                 <Route path="/project/:projectId" element={<ProjectDetail />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

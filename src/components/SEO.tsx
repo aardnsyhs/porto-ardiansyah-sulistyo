@@ -7,10 +7,10 @@ interface SEOProps {
   image?: string;
 }
 
-const SITE_NAME = "Ardiansyah Sulistyo — Full Stack Developer";
+const SITE_NAME = "Ardiansyah Sulistyo — Web Developer Portfolio";
 const BASE_URL = "https://ardiansyahsulistyo.me";
 const DEFAULT_DESCRIPTION =
-  "Portfolio of Ardiansyah Sulistyo – Full Stack Developer specializing in Next.js, React, TypeScript, and modern web technologies. 2+ years of experience building scalable web applications.";
+  "Freelance Web Developer based in Cimahi, West Java, Indonesia. I build websites for TA/skripsi projects, landing pages, company profiles, and simple dashboards using Laravel, React, and Next.js.";
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 
 const SEO = ({

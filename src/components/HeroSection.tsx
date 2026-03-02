@@ -3,6 +3,7 @@ import { Download } from "lucide-react";
 import TypingEffect from "./TypingEffect";
 import ParticleBackground from "./ParticleBackground";
 import OptimizedImage from "./OptimizedImage";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -85,6 +86,13 @@ const HeroSection = () => {
               <Download className="w-4 h-4" aria-hidden="true" />
               Download CV
             </a>
+            <Link
+              to="/freelance-web-developer-cimahi"
+              className="portfolio-button-secondary portfolio-button-focus"
+              aria-label="View freelance web developer services in Cimahi"
+            >
+              Freelance Services
+            </Link>
           </div>
         </div>
       </div>

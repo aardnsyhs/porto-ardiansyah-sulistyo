@@ -6,15 +6,17 @@
     <meta name="theme-color" content="#000000" />
 
     <!-- SEO Meta Tags -->
-    <title>Ardiansyah Sulistyo - Full Stack Web Developer | Portfolio</title>
+    <title>
+      Freelance Web Developer Cimahi, Indonesia | Ardiansyah Sulistyo
+    </title>
     <meta
       name="description"
-      content="Portfolio of Ardiansyah Sulistyo, a passionate full-stack web developer specializing in PHP, Laravel, React.js, Next.js, and modern web technologies. Graduate of SMKN 2 Cimahi currently working at PT Eksam Digital Edukasi."
+      content="Freelance Web Developer in Cimahi, West Java, Indonesia. Ardiansyah Sulistyo builds websites for TA/skripsi projects, landing pages, company profiles, and simple dashboards with Laravel, React, and Next.js."
     />
     <meta name="author" content="Ardiansyah Sulistyo" />
     <meta
       name="keywords"
-      content="ardiansyah sulistyo, web developer, full stack developer, PHP developer, Laravel developer, React developer, Next.js developer, Vue.js developer, JavaScript developer, frontend developer, backend developer, portfolio, software engineering, SMKN 2 Cimahi, PT Eksam Digital Edukasi, web development services, modern web technologies"
+      content="freelance web developer cimahi, jasa pembuatan website cimahi, web developer cimahi, freelance web developer indonesia, jasa website bandung, ardiansyah sulistyo, laravel developer, react developer, next.js developer, portfolio web developer"
     />
     <meta
       name="robots"
@@ -29,11 +31,11 @@
     <!-- Open Graph Meta Tags -->
     <meta
       property="og:title"
-      content="Ardiansyah Sulistyo - Full Stack Web Developer | Portfolio"
+      content="Freelance Web Developer Cimahi, Indonesia | Ardiansyah Sulistyo"
     />
     <meta
       property="og:description"
-      content="Portfolio of Ardiansyah Sulistyo, a passionate full-stack web developer specializing in PHP, Laravel, React.js, Next.js, and modern web technologies."
+      content="Freelance Web Developer in Cimahi, West Java, Indonesia. Available for TA/skripsi websites, landing pages, company profiles, and simple dashboards."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ardiansyahsulistyo.me/" />
@@ -54,11 +56,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Ardiansyah Sulistyo - Full Stack Web Developer | Portfolio"
+      content="Freelance Web Developer Cimahi, Indonesia | Ardiansyah Sulistyo"
     />
     <meta
       name="twitter:description"
-      content="Portfolio of Ardiansyah Sulistyo, a passionate full-stack web developer specializing in PHP, Laravel, React.js, Next.js, and modern web technologies."
+      content="Freelance Web Developer in Cimahi, West Java, Indonesia. Available for TA/skripsi websites, landing pages, company profiles, and simple dashboards."
     />
     <meta
       name="twitter:image"
@@ -101,30 +103,74 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Ardiansyah Sulistyo",
-        "jobTitle": "Full Stack Web Developer",
-        "url": "https://ardiansyahsulistyo.me/",
-        "image": "https://storage.googleapis.com/gpt-engineer-file-uploads/kQT4gSWqB0cxdcICltDU4rAVNnR2/social-images/social-1758012838022-pp.jpeg",
-        "description": "Full Stack Web Developer specializing in PHP, Laravel, React.js, Next.js, and modern web technologies",
-        "alumniOf": "SMKN 2 Cimahi",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "PT Eksam Digital Edukasi"
-        },
-        "knowsAbout": [
-          "Web Development",
-          "PHP",
-          "Laravel",
-          "React.js",
-          "Next.js",
-          "Vue.js",
-          "JavaScript",
-          "Full Stack Development"
-        ],
-        "sameAs": [
-          "https://github.com/aardnsyhs",
-          "https://linkedin.com/in/aardnsyhs"
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://ardiansyahsulistyo.me/#person",
+            "name": "Ardiansyah Sulistyo",
+            "jobTitle": "Freelance Web Developer",
+            "url": "https://ardiansyahsulistyo.me/",
+            "image": "https://storage.googleapis.com/gpt-engineer-file-uploads/kQT4gSWqB0cxdcICltDU4rAVNnR2/social-images/social-1758012838022-pp.jpeg",
+            "description": "Freelance Web Developer based in Cimahi, West Java, Indonesia specializing in Laravel, React.js, and Next.js.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Cimahi",
+              "addressRegion": "West Java",
+              "addressCountry": "ID"
+            },
+            "alumniOf": {
+              "@type": "EducationalOrganization",
+              "name": "SMKN 2 Cimahi"
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "PT Eksam Digital Edukasi"
+            },
+            "hasOccupation": {
+              "@type": "Occupation",
+              "name": "Freelance Web Developer",
+              "occupationLocation": {
+                "@type": "City",
+                "name": "Cimahi"
+              }
+            },
+            "knowsLanguage": ["id-ID", "en"],
+            "knowsAbout": [
+              "Web Development",
+              "PHP",
+              "Laravel",
+              "React.js",
+              "Next.js",
+              "JavaScript",
+              "TypeScript",
+              "Full Stack Development"
+            ],
+            "sameAs": [
+              "https://github.com/aardnsyhs",
+              "https://linkedin.com/in/ardiansyah-sulistyo"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://ardiansyahsulistyo.me/#website",
+            "url": "https://ardiansyahsulistyo.me/",
+            "name": "Ardiansyah Sulistyo Portfolio",
+            "description": "Portfolio and freelance web development services in Cimahi, West Java, Indonesia.",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://ardiansyahsulistyo.me/#organization",
+            "name": "Ardiansyah Sulistyo Web Development",
+            "url": "https://ardiansyahsulistyo.me/",
+            "founder": {
+              "@id": "https://ardiansyahsulistyo.me/#person"
+            },
+            "sameAs": [
+              "https://github.com/aardnsyhs",
+              "https://linkedin.com/in/ardiansyah-sulistyo"
+            ]
+          }
         ]
       }
     </script>

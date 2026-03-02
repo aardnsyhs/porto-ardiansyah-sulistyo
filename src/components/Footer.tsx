@@ -66,6 +66,19 @@ const Footer = () => {
             <p className="text-muted-foreground text-sm">
               © {currentYear} Ardiansyah Sulistyo. All rights reserved.
             </p>
+            <p className="text-muted-foreground text-sm mt-2">
+              Based in Cimahi, West Java, Indonesia. Available for freelance web
+              projects.
+            </p>
+            <p className="mt-2">
+              <a
+                href="/freelance-web-developer-cimahi"
+                className="text-sm text-primary hover:underline"
+                aria-label="Freelance Web Developer in Cimahi page"
+              >
+                Freelance Web Developer in Cimahi
+              </a>
+            </p>
           </div>
         </div>
       </div>

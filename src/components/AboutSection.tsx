@@ -26,6 +26,10 @@ const AboutSection = () => {
                   digital solutions that solve real-world problems.
                 </p>
                 <p>
+                  I&apos;m based in Cimahi, West Java, Indonesia, and open to
+                  remote collaboration across Indonesia.
+                </p>
+                <p>
                   I completed a 5-month internship at PT Javan Cipta Solusi,
                   where I honed my skills in full-stack web development.
                   Currently, I'm working as a Web Developer at PT Eksam Digital
