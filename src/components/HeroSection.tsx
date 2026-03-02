@@ -1,4 +1,4 @@
-import profilePhoto from "@/assets/optimized/profile-photo-800w.webp";
+import profilePhoto from "@/assets/optimized/profile-photo-400w.webp";
 import { Download } from "lucide-react";
 import TypingEffect from "./TypingEffect";
 import ParticleBackground from "./ParticleBackground";
@@ -24,6 +24,7 @@ const HeroSection = () => {
                 priority
                 width="160"
                 height="160"
+                sizes="(max-width: 768px) 128px, 160px"
               />
             </div>
           </div>

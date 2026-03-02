@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Host: https://ardiansyahsulistyo.me
 Sitemap: https://ardiansyahsulistyo.me/sitemap.xml

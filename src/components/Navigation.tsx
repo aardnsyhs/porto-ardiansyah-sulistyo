@@ -35,24 +35,44 @@ const Navigation = () => {
 
       requestAnimationFrame(() => {
         setIsScrolled(window.scrollY > 50);
-
-        if (location.pathname === "/") {
-          const scrollPosition = window.scrollY + 100;
-          for (let i = navItems.length - 1; i >= 0; i--) {
-            const section = document.getElementById(navItems[i].id);
-            if (section && section.offsetTop <= scrollPosition) {
-              setActiveSection(navItems[i].id);
-              break;
-            }
-          }
-        }
-
         ticking.current = false;
       });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
+    const sections = navItems
+      .map((item) => document.getElementById(item.id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visibleEntries.length > 0) {
+          setActiveSection(visibleEntries[0].target.id);
+        }
+      },
+      {
+        threshold: [0.25, 0.5, 0.75],
+        rootMargin: "-80px 0px -40% 0px",
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      observer.disconnect();
+    };
   }, [location.pathname]);
 
   useEffect(() => {

@@ -9,57 +9,45 @@ declare global {
 
 const Analytics = () => {
   useEffect(() => {
+    if (!import.meta.env.PROD) return;
+
     const GA_TRACKING_ID = "G-QMQHNEZQ7J";
+    let timeoutId: number | undefined;
+    let idleId: number | undefined;
 
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
-    document.head.appendChild(script);
+    const initAnalytics = () => {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
+      document.head.appendChild(script);
 
-    window.dataLayer = window.dataLayer || [];
-    function gtag(...args: unknown[]) {
-      window.dataLayer!.push(args);
-    }
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args: unknown[]) {
+        window.dataLayer!.push(args);
+      }
 
-    window.gtag = gtag;
+      window.gtag = gtag;
 
-    gtag("js", new Date());
-    gtag("config", GA_TRACKING_ID, {
-      page_title: document.title,
-      page_location: window.location.href,
-    });
-
-    const trackPageView = () => {
-      gtag("event", "page_view", {
+      gtag("js", new Date());
+      gtag("config", GA_TRACKING_ID, {
         page_title: document.title,
         page_location: window.location.href,
       });
     };
 
-    const trackSectionView = (sectionName: string) => {
-      gtag("event", "section_view", {
-        section_name: sectionName,
-      });
-    };
-
-    const sections = document.querySelectorAll("section[id]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-            trackSectionView(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-
-    trackPageView();
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(initAnalytics, { timeout: 3000 });
+    } else {
+      timeoutId = window.setTimeout(initAnalytics, 1500);
+    }
 
     return () => {
-      observer.disconnect();
+      if (typeof idleId === "number" && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (typeof timeoutId === "number") {
+        window.clearTimeout(timeoutId);
+      }
       const existingScript = document.querySelector(
         `script[src*="googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}"]`,
       );
