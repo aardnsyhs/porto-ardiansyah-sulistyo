@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { X, Menu } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import EasterEgg from "./EasterEgg";
 
@@ -24,6 +25,8 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const ticking = useRef(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,12 +36,14 @@ const Navigation = () => {
       requestAnimationFrame(() => {
         setIsScrolled(window.scrollY > 50);
 
-        const scrollPosition = window.scrollY + 100;
-        for (let i = navItems.length - 1; i >= 0; i--) {
-          const section = document.getElementById(navItems[i].id);
-          if (section && section.offsetTop <= scrollPosition) {
-            setActiveSection(navItems[i].id);
-            break;
+        if (location.pathname === "/") {
+          const scrollPosition = window.scrollY + 100;
+          for (let i = navItems.length - 1; i >= 0; i--) {
+            const section = document.getElementById(navItems[i].id);
+            if (section && section.offsetTop <= scrollPosition) {
+              setActiveSection(navItems[i].id);
+              break;
+            }
           }
         }
 
@@ -48,7 +53,29 @@ const Navigation = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (location.pathname !== "/" || !location.hash) return;
+
+    const sectionId = location.hash.replace("#", "");
+    const scrollToHashTarget = () => {
+      const element = document.getElementById(sectionId);
+      if (!element) return false;
+
+      element.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(sectionId);
+      return true;
+    };
+
+    if (scrollToHashTarget()) return;
+
+    const timer = window.setTimeout(() => {
+      scrollToHashTarget();
+    }, 100);
+
+    return () => window.clearTimeout(timer);
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -74,13 +101,23 @@ const Navigation = () => {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isMobileMenuOpen]);
 
-  const scrollToSection = useCallback((sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = useCallback(
+    (sectionId: string) => {
       setIsMobileMenuOpen(false);
-    }
-  }, []);
+
+      if (location.pathname !== "/") {
+        navigate(`/#${sectionId}`);
+        return;
+      }
+
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        setActiveSection(sectionId);
+      }
+    },
+    [location.pathname, navigate],
+  );
 
   return (
     <nav
