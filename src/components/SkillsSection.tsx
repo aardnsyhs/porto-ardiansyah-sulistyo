@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import SkillsVisualization from "./SkillsVisualization";
 import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
+import ScrambleHeading from "./ScrambleHeading";
 
 const SkillsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -147,9 +148,13 @@ const SkillsSection = () => {
       <div className="container-portfolio">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 id="skills-heading" className="portfolio-subheading mb-4">
-              Skills & Technologies
-            </h2>
+            <ScrambleHeading
+              as="h2"
+              text="Skills & Technologies"
+              id="skills-heading"
+              className="portfolio-subheading mb-4"
+              duration={850}
+            />
             <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
             <p className="portfolio-body max-w-2xl mx-auto">
               Here are the technologies and tools I work with to bring ideas to

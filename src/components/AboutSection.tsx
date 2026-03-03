@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
 import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
+import ScrambleHeading from "./ScrambleHeading";
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -85,12 +86,13 @@ const AboutSection = () => {
       <div className="container-portfolio">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2
+            <ScrambleHeading
+              as="h2"
+              text="About Me"
               id="about-heading"
               className="portfolio-subheading mb-4 about-heading"
-            >
-              About Me
-            </h2>
+              duration={750}
+            />
             <div className="w-20 h-1 bg-primary mx-auto about-divider"></div>
           </div>
           <div className="grid md:grid-cols-2 gap-12 items-center">

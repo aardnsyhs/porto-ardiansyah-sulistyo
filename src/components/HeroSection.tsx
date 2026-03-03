@@ -7,27 +7,65 @@ import ParticleBackground from "./ParticleBackground";
 import OptimizedImage from "./OptimizedImage";
 import { Link } from "react-router-dom";
 import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
+import { useMagneticEffect } from "@/hooks/useMagneticEffect";
+
+const splitLetters = (el: HTMLElement) => {
+  const text = el.textContent ?? "";
+  el.innerHTML = text
+    .split("")
+    .map((ch) =>
+      ch === " "
+        ? `<span class="letter-space" style="display:inline-block">&nbsp;</span>`
+        : `<span class="letter" style="display:inline-block;opacity:0;transform:translateY(60px) rotate(8deg)">${ch}</span>`,
+    )
+    .join("");
+  return el.querySelectorAll<HTMLElement>(".letter");
+};
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const nameRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+    const handleMouse = (e: MouseEvent) => {
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      const dx = (e.clientX - cx) / cx;
+      const dy = (e.clientY - cy) / cy;
+
+      const avatar =
+        containerRef.current?.querySelector<HTMLElement>(".hero-avatar");
+      const heading =
+        containerRef.current?.querySelector<HTMLElement>(".hero-heading");
+      if (avatar) {
+        avatar.style.transform = `translate(${dx * 8}px, ${dy * 8}px)`;
+      }
+      if (heading) {
+        heading.style.transform = `translate(${dx * -4}px, ${dy * -4}px)`;
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouse, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouse);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container || prefersReducedMotion()) return;
 
     const avatar = container.querySelector<HTMLElement>(".hero-avatar");
-    const heading = container.querySelector<HTMLElement>(".hero-heading");
+    const nameEl = nameRef.current;
     const subheading = container.querySelector<HTMLElement>(".hero-subheading");
     const body = container.querySelector<HTMLElement>(".hero-body");
     const buttons = container.querySelectorAll<HTMLElement>(".hero-btn");
 
+    let letters: NodeListOf<HTMLElement> | null = null;
+    if (nameEl) letters = splitLetters(nameEl);
+
     if (avatar) {
       avatar.style.opacity = "0";
       avatar.style.transform = "scale(0.5)";
-    }
-    if (heading) {
-      heading.style.opacity = "0";
-      heading.style.transform = "translateY(40px)";
     }
     if (subheading) {
       subheading.style.opacity = "0";
@@ -51,16 +89,23 @@ const HeroSection = () => {
       ease: "spring(1, 80, 12, 0)",
     })
       .add(
-        heading,
-        { opacity: [0, 1], translateY: [40, 0], duration: 700 },
+        letters,
+        {
+          opacity: [0, 1],
+          translateY: [60, 0],
+          rotate: [8, 0],
+          duration: 600,
+          delay: stagger(35, { from: "center" }),
+          ease: "spring(1, 70, 14, 0)",
+        },
         200,
       )
       .add(
         subheading,
         { opacity: [0, 1], translateY: [25, 0], duration: 600 },
-        400,
+        500,
       )
-      .add(body, { opacity: [0, 1], translateY: [25, 0], duration: 600 }, 550)
+      .add(body, { opacity: [0, 1], translateY: [25, 0], duration: 600 }, 650)
       .add(
         buttons,
         {
@@ -70,11 +115,18 @@ const HeroSection = () => {
           duration: 500,
           delay: stagger(80),
         },
-        700,
+        800,
       );
 
-    return () => tl.pause();
+    return () => {
+      tl.pause();
+    };
   }, []);
+
+  const mag1 = useMagneticEffect(0.3);
+  const mag2 = useMagneticEffect(0.3);
+  const mag3 = useMagneticEffect(0.3);
+  const mag4 = useMagneticEffect(0.3);
 
   return (
     <section
@@ -100,10 +152,10 @@ const HeroSection = () => {
           </div>
           <div className="space-y-4">
             <h1 className="portfolio-heading relative group hero-heading">
-              <span className="relative">
+              <span className="relative" ref={nameRef}>
                 Ardiansyah Sulistyo
-                <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-700 group-hover:w-full"></span>
-                <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-primary/20 to-accent/20 blur-sm opacity-0 group-hover:opacity-100 transition-all duration-700"></span>
+                <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-700 group-hover:w-full" />
+                <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-primary/20 to-accent/20 blur-sm opacity-0 group-hover:opacity-100 transition-all duration-700" />
               </span>
             </h1>
             <div className="portfolio-subheading text-muted-foreground hero-subheading">
@@ -127,6 +179,7 @@ const HeroSection = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
+              ref={mag1}
               onClick={() =>
                 document
                   .getElementById("portfolio")
@@ -138,6 +191,7 @@ const HeroSection = () => {
               View My Work
             </button>
             <button
+              ref={mag2}
               onClick={() =>
                 document
                   .getElementById("contact")
@@ -149,6 +203,7 @@ const HeroSection = () => {
               Get In Touch
             </button>
             <a
+              ref={mag3}
               href="/cv.pdf"
               download
               className="portfolio-button-secondary portfolio-button-focus inline-flex items-center gap-2 hero-btn"
@@ -158,6 +213,7 @@ const HeroSection = () => {
               Download CV
             </a>
             <Link
+              ref={mag4}
               to="/freelance-web-developer-cimahi"
               className="portfolio-button-secondary portfolio-button-focus hero-btn"
               aria-label="View freelance web developer services in Cimahi"

@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
 import { Handshake, MessageCircle, Rocket } from "lucide-react";
 import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
+import ScrambleHeading from "./ScrambleHeading";
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -141,7 +142,12 @@ const ContactSection = () => {
       <div className="container-portfolio">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16 contact-heading">
-            <h2 className="portfolio-subheading mb-4">Get In Touch</h2>
+            <ScrambleHeading
+              as="h2"
+              text="Get In Touch"
+              className="portfolio-subheading mb-4"
+              duration={700}
+            />
             <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
             <p className="portfolio-body max-w-2xl mx-auto">
               I'm always interested in hearing about new opportunities and

@@ -6,6 +6,7 @@ import { Eye, ExternalLink, ArrowRight } from "lucide-react";
 import OptimizedImage from "./OptimizedImage";
 import { animate, stagger } from "animejs";
 import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
+import ScrambleHeading from "./ScrambleHeading";
 
 const PortfolioSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -89,9 +90,13 @@ const PortfolioSection = () => {
       <div className="container-portfolio">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 fade-in">
-            <h2 id="portfolio-heading" className="portfolio-subheading mb-4">
-              Portfolio
-            </h2>
+            <ScrambleHeading
+              as="h2"
+              text="Portfolio"
+              id="portfolio-heading"
+              className="portfolio-subheading mb-4"
+              duration={650}
+            />
             <div className="w-20 h-1 bg-primary mx-auto mb-6" />
             <p className="portfolio-body max-w-2xl mx-auto">
               A collection of projects that showcase my skills and experience in
