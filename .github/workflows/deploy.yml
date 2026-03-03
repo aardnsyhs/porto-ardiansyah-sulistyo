@@ -17,9 +17,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            cd /var/www/html
+            cd ~/portfolio-react
             git fetch origin
             git reset --hard origin/main
-            npm install
-            npm run build
-            sudo systemctl reload nginx
+            docker compose up -d --build
+            docker image prune -f
