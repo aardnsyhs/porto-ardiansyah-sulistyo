@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import ProjectModal from "./ProjectModal";
 import { projects, projectCategories, type Project } from "@/data/projects";
 import { Eye, ExternalLink, ArrowRight } from "lucide-react";
 import OptimizedImage from "./OptimizedImage";
+import { animate, stagger } from "animejs";
+import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
 
 const PortfolioSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const hasAnimatedInitial = useRef(false);
+  const isFirstFilter = useRef(true);
 
   const filteredProjects =
     activeCategory.toLowerCase() === "all"
@@ -22,6 +27,58 @@ const PortfolioSection = () => {
     setSelectedProject(project);
     setIsModalOpen(true);
   };
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid || prefersReducedMotion()) return;
+
+    const cards = grid.querySelectorAll<HTMLElement>(".project-card");
+    cards.forEach((c) => {
+      c.style.opacity = "0";
+      c.style.transform = "scale(0.85) translateY(20px)";
+    });
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimatedInitial.current) {
+          hasAnimatedInitial.current = true;
+          isFirstFilter.current = false;
+          animate(cards, {
+            opacity: [0, 1],
+            scale: [0.85, 1],
+            translateY: [20, 0],
+            duration: 550,
+            delay: stagger(80, { from: "center" }),
+            ease: "outBack(1.2)",
+          });
+        }
+      },
+      { threshold: 0.08 },
+    );
+
+    observer.observe(grid);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid || prefersReducedMotion() || isFirstFilter.current) return;
+
+    const cards = grid.querySelectorAll<HTMLElement>(".project-card");
+    cards.forEach((c) => {
+      c.style.opacity = "0";
+      c.style.transform = "scale(0.85) translateY(20px)";
+    });
+
+    animate(cards, {
+      opacity: [0, 1],
+      scale: [0.85, 1],
+      translateY: [20, 0],
+      duration: 450,
+      delay: stagger(60, { from: "center" }),
+      ease: "outBack(1.2)",
+    });
+  }, [activeCategory]);
 
   return (
     <section
@@ -49,7 +106,10 @@ const PortfolioSection = () => {
             {projectCategories.map((category) => (
               <button
                 key={category}
-                onClick={() => setActiveCategory(category)}
+                onClick={() => {
+                  isFirstFilter.current = false;
+                  setActiveCategory(category);
+                }}
                 role="tab"
                 aria-selected={activeCategory === category}
                 aria-controls="projects-grid"
@@ -66,16 +126,15 @@ const PortfolioSection = () => {
           </nav>
           <div
             id="projects-grid"
+            ref={gridRef}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr"
             role="tabpanel"
             aria-live="polite"
           >
-            {filteredProjects.map((project, index) => (
+            {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className={`portfolio-card group fade-in fade-in-delay-${
-                  (index % 3) + 1
-                } h-full min-h-[430px] md:min-h-[450px] flex flex-col`}
+                className="project-card portfolio-card group h-full min-h-[430px] md:min-h-[450px] flex flex-col"
               >
                 <div className="relative overflow-hidden rounded-lg mb-4 h-48">
                   <OptimizedImage

@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+import { animate, stagger } from "animejs";
 import {
   Code2,
   Palette,
@@ -13,8 +15,12 @@ import {
   Router,
 } from "lucide-react";
 import SkillsVisualization from "./SkillsVisualization";
+import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
 
 const SkillsSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
   const skillCategories = [
     {
       title: "Frontend",
@@ -57,15 +63,90 @@ const SkillsSection = () => {
     },
   ];
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || prefersReducedMotion()) return;
+
+    const cards = section.querySelectorAll<HTMLElement>(".skill-card");
+    const progressBars =
+      section.querySelectorAll<HTMLElement>(".skill-bar-fill");
+    const badges = section.querySelectorAll<HTMLElement>(".tech-badge");
+    const vizSection = section.querySelector<HTMLElement>(".skills-viz");
+
+    cards.forEach((c) => {
+      c.style.opacity = "0";
+      c.style.transform = "translateY(50px)";
+    });
+    progressBars.forEach((b) => {
+      b.style.width = "0%";
+    });
+    badges.forEach((b) => {
+      b.style.opacity = "0";
+      b.style.transform = "translateY(15px) scale(0.9)";
+    });
+    if (vizSection) {
+      vizSection.style.opacity = "0";
+      vizSection.style.transform = "translateY(30px)";
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+
+          animate(cards, {
+            opacity: [0, 1],
+            translateY: [50, 0],
+            duration: 650,
+            delay: stagger(120),
+            ease: "outExpo",
+          });
+
+          progressBars.forEach((bar) => {
+            const targetWidth = bar.dataset.width ?? "0";
+            animate(bar, {
+              width: ["0%", `${targetWidth}%`],
+              duration: 1200,
+              delay: stagger(40),
+              ease: "outCubic",
+            });
+          });
+
+          animate(vizSection, {
+            opacity: [0, 1],
+            translateY: [30, 0],
+            duration: 600,
+            delay: 600,
+            ease: "outCubic",
+          });
+
+          animate(badges, {
+            opacity: [0, 1],
+            translateY: [15, 0],
+            scale: [0.9, 1],
+            duration: 400,
+            delay: stagger(35, { start: 800 }),
+            ease: "outBack(1.5)",
+          });
+        }
+      },
+      { threshold: 0.08 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="skills"
       className="section-padding"
       aria-labelledby="skills-heading"
+      ref={sectionRef}
     >
       <div className="container-portfolio">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 fade-in">
+          <div className="text-center mb-16">
             <h2 id="skills-heading" className="portfolio-subheading mb-4">
               Skills & Technologies
             </h2>
@@ -79,9 +160,8 @@ const SkillsSection = () => {
             {skillCategories.map((category, categoryIndex) => (
               <div
                 key={category.title}
-                className={`portfolio-card fade-in fade-in-delay-${
-                  categoryIndex + 1
-                } group hover:scale-105 transition-all duration-300`}
+                className="portfolio-card skill-card group hover:scale-105 transition-all duration-300"
+                style={{ animationDelay: `${categoryIndex * 120}ms` }}
               >
                 <div className="flex items-center justify-center mb-6">
                   <category.icon className="w-6 h-6 text-primary mr-2 group-hover:animate-pulse" />
@@ -103,8 +183,9 @@ const SkillsSection = () => {
                       </div>
                       <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
                         <div
-                          className="bg-gradient-to-r from-primary to-accent h-2 rounded-full transition-all duration-1000 ease-out"
-                          style={{ width: `${skill.level}%` }}
+                          className="skill-bar-fill bg-gradient-to-r from-primary to-accent h-2 rounded-full"
+                          style={{ width: "0%" }}
+                          data-width={skill.level}
                         ></div>
                       </div>
                     </div>
@@ -113,7 +194,7 @@ const SkillsSection = () => {
               </div>
             ))}
           </div>
-          <div className="mb-16 fade-in fade-in-delay-4">
+          <div className="mb-16 skills-viz">
             <h3 className="text-center text-lg font-semibold mb-8">
               Core Skills Overview
             </h3>
@@ -133,7 +214,7 @@ const SkillsSection = () => {
               />
             </div>
           </div>
-          <div className="fade-in fade-in-delay-5">
+          <div>
             <h3 className="text-center text-lg font-semibold mb-8 text-muted-foreground">
               Technologies I work with
             </h3>
@@ -150,10 +231,10 @@ const SkillsSection = () => {
                 { name: "TailwindCSS", icon: Palette },
                 { name: "MySQL", icon: Database },
                 { name: "PostgreSQL", icon: Database },
-              ].map((tech, index) => (
+              ].map((tech) => (
                 <div
                   key={tech.name}
-                  className="group flex items-center px-4 py-2 rounded-lg cursor-pointer bg-muted hover:bg-primary hover:scale-105 transition-all duration-300"
+                  className="tech-badge group flex items-center px-4 py-2 rounded-lg cursor-pointer bg-muted hover:bg-primary hover:scale-105 transition-all duration-300"
                 >
                   <tech.icon
                     className="w-4 h-4 mr-2 text-muted-foreground

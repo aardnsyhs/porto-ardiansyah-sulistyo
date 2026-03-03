@@ -1,6 +1,12 @@
+import { useEffect, useRef } from "react";
+import { animate, stagger } from "animejs";
 import { Handshake, MessageCircle, Rocket } from "lucide-react";
+import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
 
 const ContactSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
   const contactInfo = [
     {
       icon: (
@@ -55,11 +61,86 @@ const ContactSection = () => {
     },
   ];
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || prefersReducedMotion()) return;
+
+    const heading = section.querySelector<HTMLElement>(".contact-heading");
+    const cards = section.querySelectorAll<HTMLElement>(".contact-card");
+    const cta = section.querySelector<HTMLElement>(".contact-cta");
+    const buttons = section.querySelectorAll<HTMLElement>(".contact-btn");
+
+    if (heading) {
+      heading.style.opacity = "0";
+      heading.style.transform = "translateY(30px)";
+    }
+    cards.forEach((c) => {
+      c.style.opacity = "0";
+      c.style.transform = "translateY(50px) scale(0.9)";
+    });
+    if (cta) {
+      cta.style.opacity = "0";
+      cta.style.transform = "translateY(30px)";
+    }
+    buttons.forEach((b) => {
+      b.style.opacity = "0";
+      b.style.transform = "scale(0.9)";
+    });
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+
+          animate(heading, {
+            opacity: [0, 1],
+            translateY: [30, 0],
+            duration: 600,
+            ease: "outCubic",
+          });
+
+          animate(cards, {
+            opacity: [0, 1],
+            translateY: [50, 0],
+            scale: [0.9, 1],
+            duration: 650,
+            delay: stagger(150, { start: 200 }),
+            ease: "spring(1, 80, 10, 0)",
+          });
+
+          animate(cta, {
+            opacity: [0, 1],
+            translateY: [30, 0],
+            duration: 600,
+            delay: 750,
+            ease: "outCubic",
+          });
+
+          animate(buttons, {
+            opacity: [0, 1],
+            scale: [0.9, 1],
+            duration: 500,
+            delay: stagger(100, { start: 900 }),
+            ease: "spring(1, 90, 12, 0)",
+          });
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="contact" className="section-padding bg-surface">
+    <section
+      id="contact"
+      className="section-padding bg-surface"
+      ref={sectionRef}
+    >
       <div className="container-portfolio">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16 fade-in">
+          <div className="text-center mb-16 contact-heading">
             <h2 className="portfolio-subheading mb-4">Get In Touch</h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
             <p className="portfolio-body max-w-2xl mx-auto">
@@ -68,7 +149,7 @@ const ContactSection = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {contactInfo.map((contact, index) => (
+            {contactInfo.map((contact) => (
               <a
                 key={contact.label}
                 href={contact.link}
@@ -76,9 +157,7 @@ const ContactSection = () => {
                 rel={
                   contact.link.startsWith("http") ? "noopener noreferrer" : ""
                 }
-                className={`portfolio-card text-center group hover:border-primary fade-in fade-in-delay-${
-                  index + 1
-                }`}
+                className="contact-card portfolio-card text-center group hover:border-primary"
               >
                 <div className="flex flex-col items-center space-y-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
@@ -94,7 +173,7 @@ const ContactSection = () => {
               </a>
             ))}
           </div>
-          <div className="text-center fade-in fade-in-delay-3">
+          <div className="text-center contact-cta">
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-center leading-tight">
                 <span className="md:hidden">
@@ -116,7 +195,7 @@ const ContactSection = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="mailto:ardiansyahsulistyo@gmail.com"
-                  className="portfolio-button-primary group"
+                  className="portfolio-button-primary group contact-btn"
                 >
                   <span className="group-hover:text-white transition-colors duration-300">
                     Let's Start the Conversation
@@ -129,7 +208,7 @@ const ContactSection = () => {
                   href="https://www.linkedin.com/in/ardiansyah-sulistyo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="portfolio-button-secondary group flex items-center"
+                  className="portfolio-button-secondary group flex items-center contact-btn"
                 >
                   <span>Connect & Network</span>
                   <span className="ml-2 group-hover:scale-110 transition-transform duration-300">

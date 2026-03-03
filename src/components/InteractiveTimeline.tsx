@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { animate, stagger } from "animejs";
 import {
   Calendar,
   MapPin,
@@ -6,6 +7,7 @@ import {
   GraduationCap,
   Briefcase,
 } from "lucide-react";
+import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
 
 interface TimelineItem {
   id: number;
@@ -85,6 +87,68 @@ const timelineData: TimelineItem[] = [
 
 const InteractiveTimeline = () => {
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || prefersReducedMotion()) return;
+
+    const line = container.querySelector<HTMLElement>(".timeline-line");
+    const dots = container.querySelectorAll<HTMLElement>(".timeline-dot");
+    const items = container.querySelectorAll<HTMLElement>(".timeline-item");
+
+    if (line) {
+      line.style.transformOrigin = "top";
+      line.style.transform = "scaleY(0)";
+    }
+    dots.forEach((d) => {
+      d.style.opacity = "0";
+      d.style.transform = "scale(0)";
+    });
+    items.forEach((item, i) => {
+      item.style.opacity = "0";
+      item.style.transform =
+        i % 2 === 0 ? "translateX(-40px)" : "translateX(40px)";
+    });
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+
+          animate(line, {
+            scaleY: [0, 1],
+            duration: 900,
+            ease: "outCubic",
+          });
+
+          animate(items, {
+            opacity: [0, 1],
+            translateX: [
+              (el: HTMLElement, i: number) => (i % 2 === 0 ? -40 : 40),
+              0,
+            ],
+            duration: 650,
+            delay: stagger(200, { start: 200 }),
+            ease: "outExpo",
+          });
+
+          animate(dots, {
+            opacity: [0, 1],
+            scale: [0, 1],
+            duration: 400,
+            delay: stagger(200, { start: 400 }),
+            ease: "spring(1, 80, 12, 0)",
+          });
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -113,13 +177,13 @@ const InteractiveTimeline = () => {
   };
 
   return (
-    <div className="relative">
-      <div className="absolute left-8 top-0 bottom-0 w-px bg-border"></div>
+    <div className="relative" ref={containerRef}>
+      <div className="timeline-line absolute left-8 top-0 bottom-0 w-px bg-border"></div>
       <div className="space-y-8">
         {timelineData.map((item, index) => (
           <div
             key={item.id}
-            className={`relative pl-20 transition-all duration-300 cursor-pointer ${
+            className={`timeline-item relative pl-20 transition-all duration-300 cursor-pointer ${
               selectedItem === item.id
                 ? "transform scale-[1.02]"
                 : "hover:transform hover:scale-[1.01]"
@@ -127,9 +191,10 @@ const InteractiveTimeline = () => {
             onClick={() =>
               setSelectedItem(selectedItem === item.id ? null : item.id)
             }
+            style={{ animationDelay: `${index * 200}ms` }}
           >
             <div
-              className={`absolute left-6 w-4 h-4 rounded-full border-2 bg-background transition-all duration-300 ${
+              className={`timeline-dot absolute left-6 w-4 h-4 rounded-full border-2 bg-background transition-all duration-300 ${
                 selectedItem === item.id
                   ? "border-primary shadow-[0_0_20px_rgba(255,255,255,0.3)]"
                   : "border-muted-foreground hover:border-primary"
