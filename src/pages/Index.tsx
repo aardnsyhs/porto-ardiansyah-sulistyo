@@ -16,8 +16,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Full Stack Web Developer in Cimahi, Indonesia"
-        description="Ardiansyah Sulistyo is a full stack web developer in Cimahi, West Java, Indonesia. Available for TA/skripsi websites, landing pages, company profiles, and small dashboards."
+        title="Full Stack Web Developer | Ardiansyah Sulistyo (Open to Work)"
+        description="Ardiansyah Sulistyo - Full Stack Web Developer experienced in integrated CMS, robust backend APIs, and modern web apps with Laravel and React. Open to Work."
         path="/"
       />
       <Analytics />

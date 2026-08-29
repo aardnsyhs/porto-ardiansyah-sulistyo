@@ -23,16 +23,26 @@ interface TimelineItem {
 const timelineData: TimelineItem[] = [
   {
     id: 1,
-    title: "Full Stack Developer",
+    title: "Full Stack Web Developer",
     company: "PT Eksam Digital Edukasi",
     period: "June 2025 - August 2026",
     type: "work",
     description: [
-      "Developing and maintaining web applications using modern technologies",
-      "Collaborating with cross-functional teams to deliver high-quality software solutions",
-      "Implementing responsive designs and optimizing application performance",
+      "Engineered full-stack CMS dashboards and REST APIs across 3 digital learning platforms: eksam.id, idcpns.com, and belajarpppk.com",
+      "Built the end-to-end 'Dashboard Edukreator' on eksam.id for creator onboarding, product & tryout management, rich question editors (KaTeX/CKEditor), and commission tracking",
+      "Integrated secure authentication (JWT & Sanctum), automated email notifications, and payment workflows (Midtrans & Xendit)",
     ],
-    technologies: ["Laravel", "React.js", "MySQL", "Bootstrap"],
+    technologies: [
+      "PHP",
+      "Laravel",
+      "React.js",
+      "Vite",
+      "Redux Toolkit",
+      "MySQL",
+      "REST API",
+      "Alpine.js",
+      "Bootstrap",
+    ],
     location: "Cimahi, Indonesia",
   },
   {

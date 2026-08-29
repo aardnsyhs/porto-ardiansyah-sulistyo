@@ -13,6 +13,8 @@ import {
   Layout,
   Layers,
   Router,
+  Terminal,
+  Boxes,
 } from "lucide-react";
 import SkillsVisualization from "./SkillsVisualization";
 import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
@@ -27,22 +29,23 @@ const SkillsSection = () => {
       title: "Frontend",
       icon: Layout,
       skills: [
-        { name: "HTML5", level: 95, icon: Code2 },
-        { name: "CSS3", level: 90, icon: Palette },
-        { name: "JavaScript", level: 85, icon: Zap },
-        { name: "React.js", level: 80, icon: Cpu },
+        { name: "React.js", level: 90, icon: Cpu },
         { name: "Next.js", level: 85, icon: Router },
-        { name: "Vue.js", level: 75, icon: Layers },
+        { name: "JavaScript", level: 90, icon: Zap },
+        { name: "Vite", level: 85, icon: Zap },
+        { name: "Redux Toolkit", level: 80, icon: Boxes },
         { name: "TailwindCSS", level: 90, icon: Palette },
-        { name: "Bootstrap", level: 85, icon: Layout },
+        { name: "Vue.js", level: 75, icon: Layers },
+        { name: "HTML5 & CSS3", level: 95, icon: Code2 },
       ],
     },
     {
       title: "Backend",
       icon: Server,
       skills: [
-        { name: "PHP", level: 85, icon: Code2 },
-        { name: "Laravel", level: 80, icon: Server },
+        { name: "PHP", level: 88, icon: Code2 },
+        { name: "Laravel", level: 85, icon: Server },
+        { name: "REST APIs", level: 88, icon: Globe },
       ],
     },
     {
@@ -54,12 +57,13 @@ const SkillsSection = () => {
       ],
     },
     {
-      title: "Tools & Others",
+      title: "Tools & Server",
       icon: GitBranch,
       skills: [
         { name: "Git", level: 85, icon: GitBranch },
-        { name: "Docker", level: 45, icon: Box },
-        { name: "REST APIs", level: 80, icon: Globe },
+        { name: "Nginx", level: 75, icon: Server },
+        { name: "Ubuntu Server", level: 75, icon: Terminal },
+        { name: "Docker", level: 50, icon: Box },
       ],
     },
   ];
@@ -225,17 +229,22 @@ const SkillsSection = () => {
             </h3>
             <div className="flex flex-wrap justify-center items-center gap-4">
               {[
-                { name: "HTML5", icon: Code2 },
-                { name: "CSS3", icon: Palette },
-                { name: "JavaScript", icon: Zap },
                 { name: "React.js", icon: Cpu },
-                { name: "Next.js", icon: Router },
-                { name: "Vue.js", icon: Layers },
-                { name: "PHP", icon: Code2 },
                 { name: "Laravel", icon: Server },
-                { name: "TailwindCSS", icon: Palette },
+                { name: "PHP", icon: Code2 },
+                { name: "JavaScript", icon: Zap },
+                { name: "Next.js", icon: Router },
+                { name: "Vite", icon: Zap },
+                { name: "Redux Toolkit", icon: Boxes },
                 { name: "MySQL", icon: Database },
                 { name: "PostgreSQL", icon: Database },
+                { name: "REST APIs", icon: Globe },
+                { name: "TailwindCSS", icon: Palette },
+                { name: "Vue.js", icon: Layers },
+                { name: "Git", icon: GitBranch },
+                { name: "Nginx", icon: Server },
+                { name: "Ubuntu Server", icon: Terminal },
+                { name: "Docker", icon: Box },
               ].map((tech) => (
                 <div
                   key={tech.name}

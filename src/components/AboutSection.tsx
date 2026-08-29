@@ -102,27 +102,32 @@ const AboutSection = () => {
               </h3>
               <div className="space-y-4 portfolio-body">
                 <p>
-                  I'm a graduate of SMKN 2 Cimahi with a major in Software
-                  Engineering (RPL). My journey in web development started
-                  during my studies, where I discovered my passion for creating
-                  digital solutions that solve real-world problems.
+                  I'm a Software Engineering (RPL) graduate from SMKN 2 Cimahi
+                  and a nationally certified developer by BNSP (Junior
+                  Programmer). My passion lies in building scalable, clean, and
+                  maintainable digital solutions that solve real-world problems.
                 </p>
                 <p>
-                  I&apos;m based in Cimahi, West Java, Indonesia, and open to
-                  remote collaboration across Indonesia.
+                  I&apos;m based in Cimahi, West Java, Indonesia, and actively
+                  open to remote, hybrid, or on-site opportunities worldwide.
                 </p>
                 <p>
-                  I completed a 5-month internship at PT Javan Cipta Solusi,
-                  where I honed my skills in full-stack web development.
-                  Currently, I'm working as a Web Developer at PT Eksam Digital
-                  Edukasi, where I continue to grow and contribute to meaningful
-                  projects in the education technology sector.
+                  My professional journey includes a full-stack internship at
+                  PT Javan Cipta Solusi, followed by my role as a Full Stack Web
+                  Developer at PT Eksam Digital Edukasi (through August 2026).
+                  There, I engineered integrated CMS dashboards and backend APIs
+                  across 3 digital learning platforms (eksam.id, idcpns.com, and
+                  belajarpppk.com), as well as the full-stack Dashboard
+                  Edukreator.
                 </p>
                 <p>
-                  I believe in writing clean, maintainable code and staying
-                  up-to-date with the latest web technologies. My goal is to
-                  create user-centric applications that provide exceptional
-                  experiences while solving complex business challenges.
+                  Currently{" "}
+                  <span className="text-foreground font-semibold">
+                    Open to Work
+                  </span>
+                  , I bring strong hands-on expertise across the PHP (Laravel) and
+                  JavaScript (React, Next.js, Vue) ecosystems. I'm ready to bring
+                  immediate value to your engineering team.
                 </p>
               </div>
             </div>

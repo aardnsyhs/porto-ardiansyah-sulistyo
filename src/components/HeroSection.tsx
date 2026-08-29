@@ -151,6 +151,10 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-medium hero-badge">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Open to Work • Available for Opportunities</span>
+            </div>
             <h1 className="portfolio-heading relative group hero-heading">
               <span className="relative" ref={nameRef}>
                 Ardiansyah Sulistyo
@@ -161,10 +165,10 @@ const HeroSection = () => {
             <div className="portfolio-subheading text-muted-foreground hero-subheading">
               <TypingEffect
                 texts={[
-                  "Web Developer",
-                  "Frontend Developer",
-                  "Backend Developer",
-                  "Full Stack Developer",
+                  "Full Stack Web Developer",
+                  "Backend & CMS Architect",
+                  "Frontend & UI Engineer",
+                  "Open to Work",
                 ]}
                 speed={120}
                 deleteSpeed={60}
@@ -172,9 +176,11 @@ const HeroSection = () => {
               />
             </div>
             <p className="portfolio-body max-w-2xl mx-auto hero-body">
-              Passionate web developer with expertise in modern web
-              technologies. Currently working at PT Eksam Digital Edukasi,
-              crafting digital solutions that make a difference.
+              Full Stack Web Developer experienced in building integrated CMS
+              architecture, robust backend APIs, and digital education platforms
+              at PT Eksam Digital Edukasi. Currently{" "}
+              <span className="text-foreground font-semibold">Open to Work</span>{" "}
+              for full-time, contract, or freelance opportunities.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

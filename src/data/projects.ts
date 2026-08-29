@@ -264,62 +264,64 @@ export const projects: Project[] = [
   },
   {
     id: 5,
-    slug: "eksam-redesign",
-    title: "Redesign UI Eksam",
+    slug: "eksam-edukasi",
+    title: "Eksam.id - CMS & Dashboard Edukreator",
     description:
-      "Modern UI/UX redesign for Eksam platform featuring enhanced user experience, responsive design, and seamless navigation.",
+      "Integrated enterprise CMS and creator monetization platform powering multi-brand digital education portals with interactive exam tools and automated workflows.",
     technologies: [
-      "Next.js",
-      "TailwindCSS",
-      "TypeScript",
-      "Radix UI",
-      "SWR",
-      "Firebase",
+      "PHP",
+      "Laravel",
+      "React.js",
+      "Vite",
+      "Redux Toolkit",
+      "MySQL",
+      "REST API",
+      "Midtrans",
     ],
-    category: "Frontend & UI",
+    category: "Full Stack Web",
     image: eksamPhoto,
     imageSm: eksamPhotoSm,
     links: {
-      live: "https://gitlab.com/ardiansyahs/eksam_web_nextjs",
-      github: "https://gitlab.com/ardiansyahs/eksam_web_nextjs",
+      live: "https://eksam.id",
+      github: "https://gitlab.com/reesv/cms_eksam_frontend",
     },
     caseStudy: {
       background:
-        "The original Eksam platform had outdated UI/UX that made navigation difficult and reduced user engagement. Users struggled with complex workflows and the interface wasn't responsive on mobile devices.",
-      goal: "Complete redesign of the Eksam platform focusing on modern aesthetics, intuitive user flows, accessibility, and responsive design across all devices.",
+        "PT Eksam Digital Edukasi operates multi-platform digital learning ecosystems (eksam.id, idcpns.com, belajarpppk.com). With a growing user base of students and educators, the platform needed a robust, centralized CMS and a dedicated 'Dashboard Edukreator' for content creators to manage courses, mock exams, and revenue sharing.",
+      goal: "Architect and develop an integrated full-stack CMS and creator dashboard supporting math formulas (KaTeX), question bank authoring, exam grading, creator onboarding, and automated payment gateway processing.",
       challenges: [
         {
-          title: "Complex User Workflows",
+          title: "Multi-Platform Centralized CMS",
           description:
-            "Simplifying complex examination workflows while maintaining all functionality required by educators and students.",
+            "Managing tryout packages, questions, users, and transactions across 3 distinct domain platforms with unified data consistency and role-based permissions.",
         },
         {
-          title: "Performance Optimization",
+          title: "Rich Interactive Content & KaTeX Support",
           description:
-            "Ensuring fast loading times and smooth interactions despite rich UI components and data-heavy operations.",
+            "Handling complex mathematical formulas, scientific symbols, and rich media in real-time exam questions without compromising rendering performance.",
         },
         {
-          title: "Design System Consistency",
+          title: "Creator Onboarding & Commission Automation",
           description:
-            "Creating a cohesive design system that scales across different modules while maintaining consistency.",
+            "Building end-to-end workflows for educator applications, mentor invitations, course publishing, and accurate commission distribution with payment gateways.",
         },
       ],
       solutions: [
-        "Implemented Radix UI for accessible, unstyled components that provide excellent UX foundation.",
-        "Used SWR for efficient data fetching with automatic caching and revalidation strategies.",
-        "Built comprehensive component library with TailwindCSS for consistent styling across the platform.",
-        "Integrated Firebase for real-time features and seamless authentication experience.",
+        "Built responsive CMS frontends using React, Vite, and Redux Toolkit with modular layouts for Tryouts, Bimbel, and Transaction reporting.",
+        "Engineered robust Laravel REST APIs with JWT & Sanctum authentication, optimized Eloquent queries, and background queues for email dispatches.",
+        "Integrated custom CKEditor and KaTeX libraries for seamless mathematical notation and rich question composition.",
+        "Developed full-stack Dashboard Edukreator supporting creator verification, course management, and Midtrans/Xendit payment integrations.",
       ],
       architecture:
-        "Next.js 15 with App Router and Turbopack for blazing-fast development and production builds. TypeScript ensures type safety. Radix UI provides accessible component primitives. SWR handles data fetching and caching. Firebase manages authentication and real-time data. TailwindCSS 4 powers the modern, responsive design system.",
+        "Modern decoupled architecture: React (Vite) Single Page Application on the CMS frontend communicating with a high-performance Laravel 9 REST API. Relational data modeling with MySQL. Payment gateway webhooks via Midtrans and Xendit. Automated email notifications and background processing.",
       results: [
-        "50% improvement in user task completion rates",
-        "Lighthouse performance score of 95+",
-        "Mobile-first responsive design works seamlessly on all devices",
-        "Positive user feedback on improved navigation and aesthetics",
+        "Successfully deployed and powering 3 major digital learning platforms (eksam.id, idcpns.com, belajarpppk.com)",
+        "Streamlined question management and tryout creation time by over 50%",
+        "Empowered hundreds of Edukreators to publish and monetize test preparation materials seamlessly",
+        "Achieved high reliability and fast response times under heavy concurrent exam access",
       ],
       lessons:
-        "This redesign project emphasized the importance of user research and iterative design. Working with Radix UI deepened my understanding of accessibility standards. I learned how crucial it is to balance aesthetic improvements with functional requirements.",
+        "Developing an education platform at scale highlighted the vital need for clear API contracts, modular state management with Redux Toolkit, and robust database indexing for high-traffic tryout sessions.",
     },
   },
 ];
