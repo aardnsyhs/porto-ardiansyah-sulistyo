@@ -211,8 +211,8 @@ const SkillsSection = () => {
               <SkillsVisualization
                 skills={[
                   { name: "Frontend", level: 88, category: "development" },
-                  { name: "Backend", level: 78, category: "development" },
-                  { name: "Database", level: 82, category: "data" },
+                  { name: "Backend", level: 86, category: "development" },
+                  { name: "Database", level: 84, category: "data" },
                   {
                     name: "Problem Solving",
                     level: 90,
@@ -236,10 +236,12 @@ const SkillsSection = () => {
                 { name: "TypeScript", icon: Code2 },
                 { name: "Next.js", icon: Router },
                 { name: "Vite", icon: Zap },
+                { name: "Alpine.js", icon: Zap },
+                { name: "TailwindCSS", icon: Palette },
+                { name: "Bootstrap", icon: Layers },
                 { name: "MySQL", icon: Database },
                 { name: "PostgreSQL", icon: Database },
                 { name: "REST APIs", icon: Globe },
-                { name: "TailwindCSS", icon: Palette },
                 { name: "Vue.js", icon: Layers },
                 { name: "Git", icon: GitBranch },
                 { name: "Nginx", icon: Server },

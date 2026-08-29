@@ -2,10 +2,15 @@ import { useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
 import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
 import ScrambleHeading from "./ScrambleHeading";
+import { projects } from "@/data/projects";
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
+
+  const totalProjects = projects.length;
+  const totalTechnologies = new Set(projects.flatMap((p) => p.technologies)).size;
+  const yearsExperience = Math.max(1, new Date().getFullYear() - 2024);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -133,21 +138,27 @@ const AboutSection = () => {
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="portfolio-card text-center about-stat-card">
-                <div className="text-3xl font-bold text-primary mb-2">1+</div>
+                <div className="text-3xl font-bold text-primary mb-2">
+                  {yearsExperience}+
+                </div>
                 <div className="text-sm text-muted-foreground">
                   Years Experience
                 </div>
               </div>
               <div className="portfolio-card text-center about-stat-card">
-                <div className="text-3xl font-bold text-primary mb-2">10+</div>
+                <div className="text-3xl font-bold text-primary mb-2">
+                  {totalProjects}+
+                </div>
                 <div className="text-sm text-muted-foreground">
                   Projects Completed
                 </div>
               </div>
               <div className="portfolio-card text-center about-stat-card">
-                <div className="text-3xl font-bold text-primary mb-2">5+</div>
+                <div className="text-3xl font-bold text-primary mb-2">
+                  {totalTechnologies}+
+                </div>
                 <div className="text-sm text-muted-foreground">
-                  Technologies
+                  Technologies Mastered
                 </div>
               </div>
               <div className="portfolio-card text-center about-stat-card">

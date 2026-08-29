@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { animate, stagger } from "animejs";
 import { Code, Calendar, Award } from "lucide-react";
 import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
+import { projects } from "@/data/projects";
 
 interface StatItemProps {
   icon: React.ReactNode;
@@ -86,22 +87,26 @@ const StatsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
+  const totalProjects = projects.length;
+  const totalTechnologies = new Set(projects.flatMap((p) => p.technologies)).size;
+  const yearsExperience = Math.max(1, new Date().getFullYear() - 2024);
+
   const stats = [
     {
       icon: <Code className="w-8 h-8" />,
-      value: 15,
+      value: totalProjects,
       label: "Projects Completed",
       suffix: "+",
     },
     {
       icon: <Calendar className="w-8 h-8" />,
-      value: 1,
+      value: yearsExperience,
       label: "Years Experience",
       suffix: "+",
     },
     {
       icon: <Award className="w-8 h-8" />,
-      value: 8,
+      value: totalTechnologies,
       label: "Technologies Mastered",
       suffix: "+",
     },
