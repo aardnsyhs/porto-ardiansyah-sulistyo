@@ -30,7 +30,7 @@ const BrandingSection = () => {
         <div className="text-center mb-12">
           <h3 className="text-2xl font-semibold mb-3">What Makes Me Different</h3>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            I focus on the details that matter — creating web experiences that are fast, accessible, and built to last.
+            I focus on the details that matter - creating web experiences that are fast, accessible, and built to last.
           </p>
         </div>
 

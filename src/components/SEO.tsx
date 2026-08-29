@@ -7,7 +7,7 @@ interface SEOProps {
   image?: string;
 }
 
-const SITE_NAME = "Ardiansyah Sulistyo — Web Developer Portfolio";
+const SITE_NAME = "Ardiansyah Sulistyo - Web Developer Portfolio";
 const BASE_URL = "https://ardiansyahsulistyo.me";
 const DEFAULT_DESCRIPTION =
   "Freelance Web Developer based in Cimahi, West Java, Indonesia. I build websites for TA/skripsi projects, landing pages, company profiles, and simple dashboards using Laravel, React, and Next.js.";
