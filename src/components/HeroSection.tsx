@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { animate, createTimeline, stagger } from "animejs";
 import profilePhoto from "@/assets/optimized/profile-photo-400w.webp";
-import { Download } from "lucide-react";
 import TypingEffect from "./TypingEffect";
 import ParticleBackground from "./ParticleBackground";
 import OptimizedImage from "./OptimizedImage";
@@ -208,16 +207,6 @@ const HeroSection = () => {
             >
               Get In Touch
             </button>
-            <a
-              ref={mag3}
-              href="/cv.pdf"
-              download
-              className="portfolio-button-secondary portfolio-button-focus inline-flex items-center gap-2 hero-btn"
-              aria-label="Download Ardiansyah Sulistyo's CV as PDF"
-            >
-              <Download className="w-4 h-4" aria-hidden="true" />
-              Download CV
-            </a>
             <Link
               ref={mag4}
               to="/freelance-web-developer-cimahi"

@@ -91,12 +91,6 @@ export const trackThemeToggle = (theme: string) => {
   });
 };
 
-export const trackDownload = (fileName: string) => {
-  trackEvent("download", {
-    file_name: fileName,
-  });
-};
-
 export const trackContactSubmission = () => {
   trackEvent("contact_form_submit", {
     form_location: "contact_section",
