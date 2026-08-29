@@ -95,7 +95,7 @@ const StatsSection = () => {
     },
     {
       icon: <Calendar className="w-8 h-8" />,
-      value: 2,
+      value: 1,
       label: "Years Experience",
       suffix: "+",
     },

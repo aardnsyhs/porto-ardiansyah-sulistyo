@@ -16,8 +16,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Freelance Web Developer in Cimahi, Indonesia"
-        description="Ardiansyah Sulistyo is a freelance web developer in Cimahi, West Java, Indonesia. Available for TA/skripsi websites, landing pages, company profiles, and small dashboards."
+        title="Full Stack Web Developer in Cimahi, Indonesia"
+        description="Ardiansyah Sulistyo is a full stack web developer in Cimahi, West Java, Indonesia. Available for TA/skripsi websites, landing pages, company profiles, and small dashboards."
         path="/"
       />
       <Analytics />

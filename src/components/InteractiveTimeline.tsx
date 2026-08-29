@@ -25,7 +25,7 @@ const timelineData: TimelineItem[] = [
     id: 1,
     title: "Full Stack Developer",
     company: "PT Eksam Digital Edukasi",
-    period: "June 2025 – Present",
+    period: "June 2025 - August 2026",
     type: "work",
     description: [
       "Developing and maintaining web applications using modern technologies",
@@ -39,7 +39,7 @@ const timelineData: TimelineItem[] = [
     id: 2,
     title: "Web Developer Intern",
     company: "PT Javan Cipta Solusi",
-    period: "July 2024 – November 2024",
+    period: "July 2024 - November 2024",
     type: "internship",
     description: [
       "Gained hands-on experience in web development using PHP and modern frameworks",
@@ -64,7 +64,7 @@ const timelineData: TimelineItem[] = [
     id: 3,
     title: "Junior Coder",
     company: "SMK Negeri 2 Cimahi",
-    period: "2022 – 2025",
+    period: "2022 - 2025",
     type: "education",
     description: [
       "Focused on software engineering and web development technologies",
@@ -183,29 +183,26 @@ const InteractiveTimeline = () => {
         {timelineData.map((item, index) => (
           <div
             key={item.id}
-            className={`timeline-item relative pl-20 transition-all duration-300 cursor-pointer ${
-              selectedItem === item.id
-                ? "transform scale-[1.02]"
-                : "hover:transform hover:scale-[1.01]"
-            }`}
+            className={`timeline-item relative pl-20 transition-all duration-300 cursor-pointer ${selectedItem === item.id
+              ? "transform scale-[1.02]"
+              : "hover:transform hover:scale-[1.01]"
+              }`}
             onClick={() =>
               setSelectedItem(selectedItem === item.id ? null : item.id)
             }
             style={{ animationDelay: `${index * 200}ms` }}
           >
             <div
-              className={`timeline-dot absolute left-6 w-4 h-4 rounded-full border-2 bg-background transition-all duration-300 ${
-                selectedItem === item.id
-                  ? "border-primary shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-                  : "border-muted-foreground hover:border-primary"
-              }`}
+              className={`timeline-dot absolute left-6 w-4 h-4 rounded-full border-2 bg-background transition-all duration-300 ${selectedItem === item.id
+                ? "border-primary shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                : "border-muted-foreground hover:border-primary"
+                }`}
             ></div>
             <div
-              className={`portfolio-card transition-all duration-300 ${
-                selectedItem === item.id
-                  ? "bg-card border-primary shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
-                  : "hover:border-gray-300"
-              }`}
+              className={`portfolio-card transition-all duration-300 ${selectedItem === item.id
+                ? "bg-card border-primary shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+                : "hover:border-gray-300"
+                }`}
             >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                 <div className="flex items-center gap-3">
@@ -236,11 +233,10 @@ const InteractiveTimeline = () => {
                 <p className="text-primary font-medium">{item.company}</p>
               </div>
               <div
-                className={`transition-all duration-300 overflow-hidden ${
-                  selectedItem === item.id
-                    ? "max-h-96 opacity-100"
-                    : "max-h-0 opacity-0"
-                }`}
+                className={`transition-all duration-300 overflow-hidden ${selectedItem === item.id
+                  ? "max-h-96 opacity-100"
+                  : "max-h-0 opacity-0"
+                  }`}
               >
                 <ul className="space-y-2 mb-4 text-muted-foreground">
                   {item.description.map((desc, descIndex) => (

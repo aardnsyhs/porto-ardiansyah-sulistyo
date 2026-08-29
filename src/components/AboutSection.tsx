@@ -98,7 +98,7 @@ const AboutSection = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 about-left">
               <h3 className="text-2xl font-semibold">
-                Web Developer with a passion for clean code
+                Full Stack Web Developer with a passion for clean code
               </h3>
               <div className="space-y-4 portfolio-body">
                 <p>
@@ -128,7 +128,7 @@ const AboutSection = () => {
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="portfolio-card text-center about-stat-card">
-                <div className="text-3xl font-bold text-primary mb-2">2+</div>
+                <div className="text-3xl font-bold text-primary mb-2">1+</div>
                 <div className="text-sm text-muted-foreground">
                   Years Experience
                 </div>
