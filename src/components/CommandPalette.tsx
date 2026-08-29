@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
-import { Home, User, Code, Briefcase, FolderOpen, Mail } from 'lucide-react';
+import { Home, User, Code, Briefcase, FolderOpen, Mail, ShieldCheck } from 'lucide-react';
 
 interface CommandItem {
   id: string;
@@ -29,13 +29,13 @@ const CommandPalette = () => {
     {
       id: 'about',
       title: 'About Me',
-      description: 'Learn more about my background',
+      description: 'Learn more about who I am',
       icon: <User className="w-4 h-4" />,
       action: () => {
         document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
         setOpen(false);
       },
-      keywords: ['about', 'bio', 'background', 'me']
+      keywords: ['about', 'bio', 'story', 'experience', 'who']
     },
     {
       id: 'skills',
@@ -58,6 +58,17 @@ const CommandPalette = () => {
         setOpen(false);
       },
       keywords: ['experience', 'work', 'career', 'education', 'timeline']
+    },
+    {
+      id: 'certifications',
+      title: 'Certifications & Credentials',
+      description: 'View BNSP Junior Programmer certification',
+      icon: <ShieldCheck className="w-4 h-4" />,
+      action: () => {
+        document.getElementById('certifications')?.scrollIntoView({ behavior: 'smooth' });
+        setOpen(false);
+      },
+      keywords: ['certification', 'certifications', 'bnsp', 'credentials', 'junior programmer', 'license']
     },
     {
       id: 'portfolio',
