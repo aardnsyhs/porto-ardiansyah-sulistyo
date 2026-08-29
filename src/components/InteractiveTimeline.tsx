@@ -8,6 +8,7 @@ import {
   Briefcase,
 } from "lucide-react";
 import { prefersReducedMotion } from "@/hooks/useScrollAnimation";
+import { getTechColor } from "@/lib/tech-colors";
 
 interface TimelineItem {
   id: number;
@@ -37,7 +38,7 @@ const timelineData: TimelineItem[] = [
       "Laravel",
       "React.js",
       "Vite",
-      "Redux Toolkit",
+      "Axios",
       "MySQL",
       "REST API",
       "Alpine.js",
@@ -265,7 +266,9 @@ const InteractiveTimeline = () => {
                       {item.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-muted text-muted-foreground text-xs rounded-full border border-border"
+                          className={`px-2.5 py-0.5 text-xs font-medium rounded-full border ${getTechColor(
+                            tech,
+                          )}`}
                         >
                           {tech}
                         </span>

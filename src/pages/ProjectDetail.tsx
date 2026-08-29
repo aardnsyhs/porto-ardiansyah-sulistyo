@@ -16,6 +16,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { projects } from "@/data/projects";
 import SEO from "@/components/SEO";
+import { getTechColor } from "@/lib/tech-colors";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -73,32 +74,45 @@ const ProjectDetail = () => {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20"
+                      className={`px-3 py-1 text-sm font-medium rounded-full border ${getTechColor(
+                        tech,
+                      )}`}
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-4">
-                  <a
-                    href={project.links.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    View Live Site
-                  </a>
-                  <a
-                    href={project.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-surface border border-border rounded-lg hover:border-primary transition-all duration-300"
-                  >
-                    <Github className="w-4 h-4" />
-                    View Code
-                  </a>
-                </div>
+                {project.links?.live || project.links?.github ? (
+                  <div className="flex gap-4">
+                    {project.links?.live && (
+                      <a
+                        href={project.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        View Live Site
+                      </a>
+                    )}
+                    {project.links?.github && (
+                      <a
+                        href={project.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-surface border border-border rounded-lg hover:border-primary transition-all duration-300"
+                      >
+                        <Github className="w-4 h-4" />
+                        View Code
+                      </a>
+                    )}
+                  </div>
+                ) : (
+                  <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-muted/50 rounded-lg border border-border text-xs text-muted-foreground">
+                    <span>🔒</span>
+                    <span>Enterprise Internal Project (Repository & Live Portal Confidential)</span>
+                  </div>
+                )}
               </div>
               <div className="rounded-lg overflow-hidden border border-border shadow-2xl">
                 <OptimizedImage
